@@ -13,11 +13,16 @@
     padding: 5vh;
 }
 
+
 .menu_button {
     width: 50px;
     height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 100px;
     background-color: black;
+    color: white;
     border: 1px solid white;
     cursor: pointer;
 }
@@ -34,16 +39,22 @@
     justify-content: end;
     background-color: red;
     transition: top 0.5s ease-in-out;
-
-    .close_button {
-        width: 50px;
-        height: 50px;
-        border-radius: 100px;
-        background-color: black;
-        border: none;
-        cursor: pointer;
-    }
 }
+
+
+.close_button {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+    background-color: black;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
 
 .menu_overlay.active {
     top: 0;
@@ -63,6 +74,11 @@
 
 .page_overlay.active {
     bottom: 0; /* Move para cima, cobrindo a tela */
+}
+
+/* Animação para voltar */
+.page_overlay:not(.active) {
+    bottom: -100vh; /* Retorna para a posição inicial */
 }
 
 
