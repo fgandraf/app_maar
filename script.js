@@ -15,24 +15,26 @@ document.addEventListener("DOMContentLoaded", () => {
         menuOverlay.classList.remove("active");
     });
 
-    // Intercepta o clique nos cards para carregar a página com animação
+    // Função para carregar e animar a nova página
     cards.forEach(card => {
         card.addEventListener("click", (event) => {
-            event.preventDefault(); // Evita carregamento direto
+            event.preventDefault(); // Impede o carregamento normal da página
             const targetPage = card.getAttribute("href"); // Obtém o link do card
 
-            // Adiciona a classe de animação
-            pageOverlay.classList.add("active");
+            // Primeiro, carregamos a nova página
+            fetch(targetPage)
+                .then(response => response.text())
+                .then(html => {
+                    pageOverlay.innerHTML = html; // Insere o conteúdo carregado
+                    pageOverlay.style.display = "block"; // Torna a div visível imediatamente
 
-            // Aguarda o efeito de transição antes de carregar o conteúdo
-            setTimeout(() => {
-                fetch(targetPage)
-                    .then(response => response.text())
-                    .then(html => {
-                        pageOverlay.innerHTML = html; // Insere o conteúdo carregado
-                    })
-                    .catch(error => console.error("Erro ao carregar a página:", error));
-            }, 500); // Tempo correspondente ao da animação (0.5s)
+                    // **Força um reflow para garantir que a transição funcione**
+                    pageOverlay.offsetHeight;
+
+                    // Agora iniciamos a animação
+                    pageOverlay.classList.add("active");
+                })
+                .catch(error => console.error("Erro ao carregar a página:", error));
         });
     });
 });

@@ -1,90 +1,91 @@
-body {
+.body_main {
     background-color: black;
     margin: 0;
     overflow-x: hidden;
+}
 
 
-    header {
+.header_main {
+    display: flex;
+    width: 99vw;
+    box-sizing: border-box;
+    justify-content: end;
+    padding: 5vh;
+}
+
+.menu_button {
+    width: 50px;
+    height: 50px;
+    border-radius: 100px;
+    background-color: black;
+    border: 1px solid white;
+    cursor: pointer;
+}
+
+.menu_overlay {
+    position: fixed;
+    display: flex;
+    box-sizing: border-box;
+    top: -100vh;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    padding: 5vh;
+    justify-content: end;
+    background-color: red;
+    transition: top 0.5s ease-in-out;
+
+    .close_button {
+        width: 50px;
+        height: 50px;
+        border-radius: 100px;
+        background-color: black;
+        border: none;
+        cursor: pointer;
+    }
+}
+
+.menu_overlay.active {
+    top: 0;
+}
+
+.page_overlay {
+    position: fixed;
+    bottom: -100vh; /* Começa fora da tela */
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: white; /* Ajuste conforme necessário */
+    transition: bottom 0.5s ease-in-out;
+    overflow-y: auto; /* Permite rolagem do conteúdo */
+    display: none; /* Escondido até ser necessário */
+}
+
+.page_overlay.active {
+    bottom: 0; /* Move para cima, cobrindo a tela */
+}
+
+
+    
+
+.main_main {
+    .cards_container {
         display: flex;
-        width: 99vw;
-        box-sizing: border-box;
-        justify-content: end;
-        padding: 5vh;
+        flex-wrap: wrap;
+        gap: 100px 40px;
+        padding: 0 40px;
+        justify-content: center;
 
-        .menu_button {
-            width: 50px;
-            height: 50px;
-            border-radius: 100px;
-            background-color: black;
-            border: 1px solid white;
-            cursor: pointer;
-        }
-
-        .menu_overlay {
-            position: fixed;
-            display: flex;
+        .card {
+            width: calc(50% - 40px);
+            height: 50vh;
             box-sizing: border-box;
-            top: -100vh;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            padding: 5vh;
-            justify-content: end;
-            background-color: red;
-            transition: top 0.5s ease-in-out;
-
-            .close_button {
-                width: 50px;
-                height: 50px;
-                border-radius: 100px;
-                background-color: black;
-                border: none;
-                cursor: pointer;
-            }
-        }
-
-        .menu_overlay.active {
-            top: 0;
-        }
-
-        .page_overlay {
-            position: fixed;
-            bottom: -100vh;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: white; /* Altere para corresponder ao fundo da nova página */
-            transition: bottom 0.5s ease-in-out;
-            overflow: hidden;
-        }
-        
-        .page_overlay.active {
-            bottom: 0;
+            border-radius: 10px;
+            background-color: gray;
         }
     }
+}
 
-
-    main {
-        .cards_container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 100px 40px;
-            padding: 0 40px;
-            justify-content: center;
-
-            .card {
-                width: calc(50% - 40px);
-                height: 50vh;
-                box-sizing: border-box;
-                border-radius: 10px;
-                background-color: gray;
-            }
-        }
-    }
-
-    footer {
-        padding: 50px 0;
-    }
-
-
+footer {
+    padding: 50px 0;
 }
