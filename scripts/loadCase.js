@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     pageOverlay.innerHTML = html; // Insere o conteúdo carregado
                     pageOverlay.style.display = "block"; // Torna a div visível imediatamente
                     
-                    // **Força um reflow para garantir que a transição funcione**
+                    // Força um reflow para garantir que a transição funcione
                     pageOverlay.offsetHeight;
 
                     // Inicia a animação de entrada
