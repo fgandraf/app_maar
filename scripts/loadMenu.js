@@ -4,9 +4,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     menuButton.addEventListener("click", (event) => {
         event.preventDefault();
+        const targetPage = "pages/menu.html";
+
 
         // Carrega o conteúdo do menu
-        fetch("pages/menu.html")
+        fetch(targetPage)
             .then(response => response.text())
             .then(html => {
 
