@@ -1,19 +1,8 @@
+
+
 document.addEventListener("DOMContentLoaded", () => {
-    const menuButton = document.getElementById("menu_button");
-    const closeButton = document.getElementById("close_menu_button");
-    const menuOverlay = document.getElementById("menu_overlay");
     const pageOverlay = document.getElementById("page_overlay");
     const cards = document.querySelectorAll(".card");
-
-    // Exibir Menu
-    menuButton.addEventListener("click", () => {
-        menuOverlay.classList.add("active");
-    });
-
-    // Fechar Menu
-    closeButton.addEventListener("click", () => {
-        menuOverlay.classList.remove("active");
-    });
 
     // Intercepta o clique nos cards para carregar a página com animação
     cards.forEach(card => {

@@ -1,0 +1,38 @@
+#home_body {
+    background-color: white;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+#home_header {
+    position:fixed;
+    z-index: 0;
+    display: flex;
+    justify-content: space-between;
+    width: 100vw;
+    box-sizing: border-box;
+    padding: 4.5vh 50px;
+}
+
+#menu_button, #close_menu_button {
+    cursor: pointer;
+}
+
+#menu_overlay {
+    position: fixed;
+    z-index: 1;
+    top: -100vh;
+    width: 100vw;
+    height: 100vh;
+    background-color: #ff1f00;
+    transition: top 0.5s ease-in-out;
+    display: none;
+}
+
+#menu_overlay.active { top: 0 }
+
+#home_main {
+    background-image: url(/images/home_background.png);
+    background-size:cover;
+    padding-top: 900px;  
+}
