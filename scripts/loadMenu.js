@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
         event.preventDefault();
 
         // Carrega o conteúdo do menu
-        fetch("pages/menu.html")
+        fetch("./pages/menu.html")
             .then(response => response.text())
             .then(html => {
 
