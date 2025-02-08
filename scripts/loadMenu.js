@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     menuButton.addEventListener("click", (event) => {
         event.preventDefault();
-        const targetPage = "pages/menu.html";
+        const targetPage = "/maar/pages/menu.html";
 
 
         // Carrega o conteúdo do menu
