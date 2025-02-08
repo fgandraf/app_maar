@@ -1,66 +1,48 @@
-.body_main {
-    background-color: black;
+#work_body {
+    background-color: white;
     margin: 0;
     overflow-x: hidden;
 }
 
-
-.header_main {
+#work_header {
+    position:fixed;
+    z-index: 0;
     display: flex;
-    width: 99vw;
+    justify-content: space-between;
+    width: 100vw;
     box-sizing: border-box;
-    justify-content: end;
-    padding: 5vh;
+    padding: 5vh 60px;
 }
 
-
-.menu_button {
-    width: 50px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 100px;
-    background-color: black;
-    color: white;
-    border: 1px solid white;
+#menu_button, #close_menu_button {
     cursor: pointer;
 }
 
-.menu_overlay {
+#menu_overlay {
     position: fixed;
+    z-index: 1;
     display: flex;
     box-sizing: border-box;
     top: -100vh;
-    left: 0;
     width: 100vw;
     height: 100vh;
     padding: 5vh;
-    justify-content: end;
-    background-color: red;
+    background-color: #ff1f00;
     transition: top 0.5s ease-in-out;
 }
 
-
-.close_button {
-    width: 50px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 100px;
-    background-color: black;
-    border: none;
-    color: white;
-    cursor: pointer;
-}
-
-
-.menu_overlay.active {
+#menu_overlay.active {
     top: 0;
 }
 
-.page_overlay {
+#menu_header{
+    display: flex;
+    width: 100vw;
+    height: 80px;
+    justify-content: space-between;
+}
+
+#page_overlay {
     position: fixed;
     bottom: -100vh; /* Começa fora da tela */
     left: 0;
@@ -72,36 +54,44 @@
     display: none; /* Escondido até ser necessário */
 }
 
-.page_overlay.active {
+#page_overlay.active {
     bottom: 0; /* Move para cima, cobrindo a tela */
 }
 
 /* Animação para voltar */
-.page_overlay:not(.active) {
+#page_overlay:not(.active) {
     bottom: -100vh; /* Retorna para a posição inicial */
 }
 
 
     
 
-.main_main {
-    .cards_container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 100px 40px;
-        padding: 0 40px;
-        justify-content: center;
-
-        .card {
-            width: calc(50% - 40px);
-            height: 50vh;
-            box-sizing: border-box;
-            border-radius: 10px;
-            background-color: gray;
-        }
-    }
+#work_main {
+    padding-top: 300px;  
 }
 
-footer {
-    padding: 50px 0;
+.cards_container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 100px 40px;
+    padding: 0 40px;
+    justify-content: center;
+
+}
+
+.card {
+    width: calc(50% - 40px);
+    height: calc(50vh - 40px);
+    background-image: url(/images/case-claro.png);
+    background-size:cover;
+    box-sizing: border-box;
+    border-radius: 0.8vw;
+}
+
+
+
+
+
+#work_footer {
+    padding: 200px 0;
 }

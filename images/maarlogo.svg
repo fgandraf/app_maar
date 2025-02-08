@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 441 104"
+   fill="none"
+   version="1.1"
+   id="svg4"
+   sodipodi:docname="maarlogo.svg"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="namedview4"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.53514739"
+     inkscape:cx="221.43432"
+     inkscape:cy="52.322034"
+     inkscape:window-width="1352"
+     inkscape:window-height="876"
+     inkscape:window-x="0"
+     inkscape:window-y="44"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg4" />
+  <path
+     d="M166.545 0H200.672L245.462 103.597H222.459L210.728 75.5631H156.493L144.761 103.597H121.758L166.545 0ZM203.716 58.8057L183.608 10.6641L163.5 58.8057H203.72H203.716Z"
+     fill="white"
+     id="path1"
+     style="fill:#030303;fill-opacity:1" />
+  <path
+     d="M276.615 0H310.742L355.533 103.597H332.529L320.798 75.5631H266.563L254.832 103.597H231.828L276.615 0ZM313.791 58.8057L293.682 10.6641L273.574 58.8057H313.794H313.791Z"
+     fill="white"
+     id="path2"
+     style="fill:#000000;fill-opacity:1" />
+  <path
+     d="M0 0H31.9924L63.6788 76.3243L95.3691 0H127.361V103.597H106.186V25.5931L72.8206 103.593H54.69L21.3283 25.5931V103.593H0V0Z"
+     fill="white"
+     id="path3"
+     style="fill:#010101;fill-opacity:1" />
+  <path
+     d="M349.605 0H397.288C421.967 0 437.814 12.0374 437.814 31.8394C437.814 44.1789 431.874 53.0146 421.818 58.3467C429.586 61.5444 433.855 67.9436 434.616 81.6563C435.072 93.2347 436.292 98.2607 440.404 103.593H418.467C415.572 100.395 413.896 93.0816 413.594 79.9771C413.288 65.9623 407.501 63.9809 397.445 63.8279H370.938V103.589H349.609V0H349.605ZM397.288 47.0744C409.321 47.0744 416.788 40.9812 416.788 31.8394C416.788 22.6976 409.321 16.7574 397.288 16.7574H370.934V47.0744H397.288Z"
+     fill="white"
+     id="path4"
+     style="fill:#000000;fill-opacity:1" />
+</svg>

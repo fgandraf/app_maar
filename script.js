@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const menuButton = document.getElementById("menuButton");
-    const closeButton = document.getElementById("closeButton");
-    const menuOverlay = document.getElementById("menuOverlay");
-    const pageOverlay = document.getElementById("pageOverlay");
+    const menuButton = document.getElementById("menu_button");
+    const closeButton = document.getElementById("close_menu_button");
+    const menuOverlay = document.getElementById("menu_overlay");
+    const pageOverlay = document.getElementById("page_overlay");
     const cards = document.querySelectorAll(".card");
 
     // Exibir Menu

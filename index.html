@@ -4,43 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <title>MAAR</title>
 </head>
-<body class="body_main">
-
-    <header class="header_main">
-        <button id="menuButton" class="menu_button">
-            <span class="material-symbols-outlined">menu</span>
-        </button>
-        
-        
-        
-        <div id="menuOverlay" class="menu_overlay">
-            <button id="closeButton" class="close_button">
-                <span class="material-symbols-outlined">close</span>
-            </button>
-        </div>
 
 
+<body id="work_body">
 
-        <div id="pageOverlay" class="page_overlay"></div>
+    <nav id="menu_overlay">
+        <section id="menu_header">
+            <img src="/images/maarlogo.svg" width="200px">
+            <img src="/images/close.png" id="close_menu_button"/>
+        </section>
+    </nav>
 
+    <header id="work_header">
+        <img src="/images/maarlogo.svg" width="200px">
+        <img src="/images/menu.png" id="menu_button"/>
     </header>
+
     
-    
-    <main class="main_main">
-        <div class="cards_container">
-            
+    <main id="work_main">
+        <section class="cards_container">
             <a id="card1" class="card" href="pages/page1.html"></a>
-            <a id="card1" class="card" href="pages/page2.html"></a>
-            <a id="card1" class="card" href="pages/page3.html"></a>
-            <a id="card1" class="card" href="pages/page4.html"></a>
-
-        </div>
-
+            <a id="card2" class="card" href="pages/page2.html"></a>
+            <a id="card3" class="card" href="pages/page3.html"></a>
+            <a id="card4" class="card" href="pages/page4.html"></a>
+        </section>
     </main>
-    <footer></footer>
+
+
+    <div id="page_overlay"></div>
+
+
+    <footer id="work_footer"></footer>
+
+
     <script src="script.js"></script>
 </body>
 </html>
