@@ -23,7 +23,7 @@ main {
     z-index: -1;
     width: 100vw;
     height: 100vh;
-    padding: 20vh calc(2vw + 5px) 20vh 2vw;
+    padding: 20vh calc(2vw + 7px) 20vh 2vw;
     text-align: justify;
     box-sizing: border-box;
 }
