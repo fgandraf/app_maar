@@ -101,12 +101,12 @@ main {
     background-color: white;
     transition: bottom 0.5s ease-in-out;
     overflow-y: auto; /* Permite rolagem do conteúdo */
-    display: none;
+    display: hidden;
 }
 
-#page_overlay.active { bottom: 0 }
+#page_overlay.active { bottom: 0; visibility: visible; }
 
-#page_overlay:not(.active) { bottom: -100vh }
+#page_overlay:not(.active) { bottom: -100vh  }
 
 #menu_footer{
     padding: 5vh;
@@ -131,11 +131,8 @@ main {
     font-family: sans-serif;
     text-decoration: none;
     box-sizing: border-box;
-
-    a{
-        color: black;
-        text-decoration: none;
-    }
+    color: black;
+    text-decoration: none;
 }
 
 .menu_footer_item_text{
