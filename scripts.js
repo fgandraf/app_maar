@@ -2,7 +2,7 @@
 // ========================= LOAD MENU ========================= //
 document.addEventListener("DOMContentLoaded", () => {
     const menuButton = document.getElementById("menu_button");
-    const menuOverlay = document.getElementById("menu_overlay");
+    const menuOverlay = document.getElementById("__menu_overlay");
     menuButton.addEventListener("click", (event) => {
         event.preventDefault();
         fetch("/pages/menu.html")
@@ -32,12 +32,16 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+
+
+
+
+
 // ========================= LOAD MENU ITEM ========================= //
 document.addEventListener("click", function (event) {
 
-    const menuOverlay = document.getElementById("menu_overlay");
-    const link = event.target.closest(".menu_footer_item");
-    const pageOverlay = document.getElementById("page_overlay");
+    const link = event.target.closest(".__menu_item");
+    const pageOverlay = document.getElementById("__page_overlay");
 
     if (link) {
         event.preventDefault();
@@ -65,10 +69,15 @@ document.addEventListener("click", function (event) {
     }
 });
 
+
+
+
+
+
 // ========================= LOAD CASES ========================= //
 document.addEventListener("DOMContentLoaded", () => {
-    const pageOverlay = document.getElementById("page_overlay");
-    const cards = document.querySelectorAll(".card");
+    const pageOverlay = document.getElementById("__page_overlay");
+    const cards = document.querySelectorAll(".__card");
 
     // Intercepta o clique nos cards para carregar a página com animação
     cards.forEach(card => {

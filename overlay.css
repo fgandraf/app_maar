@@ -1,0 +1,29 @@
+
+#__menu_overlay {
+    position: fixed;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+
+    top: -100vh;
+    background-color: #ff1f00;
+    transition: top 0.5s ease-in-out;
+}
+#__menu_overlay.active { top: 0 }
+
+
+
+
+#__page_overlay {
+    position: fixed;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+
+    bottom: -100vh;
+    background-color: white;
+    transition: bottom 0.5s ease-in-out;
+}
+#__page_overlay.active { bottom: 0; visibility: visible; }
