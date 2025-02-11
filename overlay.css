@@ -27,3 +27,17 @@
     transition: bottom 0.5s ease-in-out;
 }
 #__page_overlay.active { bottom: 0; visibility: visible; }
+
+
+
+
+
+main {
+    transition: background-color 0.4s ease-in-out, filter 0.4s ease-in-out;
+}
+
+.dimmer {
+    transition: background-color 0.4s ease-in-out, filter 0.5s ease-in-out;
+    background-color: rgba(0, 0, 0, 0.7);
+    filter: brightness(0.2);
+}
