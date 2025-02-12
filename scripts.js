@@ -3,11 +3,14 @@
 document.addEventListener("DOMContentLoaded", () => {
     const menuButton = document.getElementById("menu_button");
     const menuOverlay = document.getElementById("__menu_overlay");
+    const workPage = document.querySelector("main");
+
     menuButton.addEventListener("click", (event) => {
         event.preventDefault();
         fetch("/pages/menu.html")
             .then(response => response.text())
             .then(html => {
+                workPage.classList.add("dimmer");
                 menuOverlay.innerHTML = html;
                 menuOverlay.style.display = "block";
                 menuOverlay.offsetHeight;
@@ -19,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         closeButton.addEventListener("click", () => {
                             menuOverlay.classList.remove("active");
                             setTimeout(() => {
+                                workPage.classList.remove("dimmer");
                                 menuOverlay.style.display = "none";
                                 menuOverlay.innerHTML = "";
                             }, 500);
@@ -45,7 +49,9 @@ document.addEventListener("click", function (event) {
 
     if (link) {
         event.preventDefault();
+        menuBackground.classList.add("dimmer");
         const targetPage = link.getAttribute("href")
+        
 
         fetch(targetPage)
             .then(response => response.text())
@@ -57,6 +63,7 @@ document.addEventListener("click", function (event) {
 
                 setTimeout(() => {
                     menuMain.classList.add("hide");
+                    menuBackground.classList.remove("dimmer");
 
                     setTimeout(() => {
                         window.location.href = targetPage;
