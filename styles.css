@@ -20,10 +20,10 @@ header {
 }
 
 main {
-    z-index: -1;
+    z-index: 0;
     width: 100vw;
     height: 100vh;
-    padding: 20vh calc(2vw + 10px) 20vh 2vw;
+    padding: 20vh 2vw;
     text-align: justify;
     box-sizing: border-box;
 }
@@ -39,7 +39,7 @@ main {
 }
 
 .text_cover{
-    height: 60%;
+    height: 60vh;
     display: flex;
     justify-content: center;
     align-items: center;

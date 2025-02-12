@@ -2,15 +2,45 @@
 #__menu_overlay {
     position: fixed;
     z-index: 1;
-    width: 100vw;
-    height: 100vh;
     display: none;
-
     top: -100vh;
-    background-color: #ff1f00;
-    transition: top 0.5s ease-in-out;
+    transition: top 0.5s ease-in;
 }
 #__menu_overlay.active { top: 0 }
+
+
+
+
+
+
+
+#menu_background{
+    z-index: 3;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    background-color: #ffffff;
+    
+    display: none;
+}
+
+
+#menu_main{
+    z-index: 3;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #ff1f00;
+    display: block;
+    transition: top 0.7s ease-out;
+}
+
+#menu_main.hide { top: -100vh;}
+
+
+
 
 
 

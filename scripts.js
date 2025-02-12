@@ -36,12 +36,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-
-// ========================= LOAD MENU ITEM ========================= //
+// ========================= LOAD MENU ITEMS ========================= //
 document.addEventListener("click", function (event) {
 
     const link = event.target.closest(".__menu_item");
-    const pageOverlay = document.getElementById("__page_overlay");
+    const menuBackground = document.getElementById("menu_background");
+    const menuMain = document.getElementById("menu_main");
 
     if (link) {
         event.preventDefault();
@@ -50,13 +50,20 @@ document.addEventListener("click", function (event) {
         fetch(targetPage)
             .then(response => response.text())
             .then(html => {
-                pageOverlay.innerHTML = html;
-                pageOverlay.style.display = "block";
-                pageOverlay.offsetHeight;
-                pageOverlay.classList.add("active");
+                menuBackground.innerHTML = html;
+                menuBackground.style.display = "block";
+                menuBackground.offsetHeight;
+                menuBackground.classList.add("active");
+
                 setTimeout(() => {
-                    window.location.href = targetPage;
-                }, 500);
+                    menuMain.classList.add("hide");
+
+                    setTimeout(() => {
+                        window.location.href = targetPage;
+                    }, 700);
+
+                    
+                }, 50);
             })
             .catch(error => console.error("Erro ao carregar a página:", error));
     }
