@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             }, 500);
                         });
                     }
-                }, 100);
+                }, 200);
             }
             )
             .catch(error => console.error("Erro ao carregar a página:", error));
