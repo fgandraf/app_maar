@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles.css">
-    <title>Jungle</title>
+    <link rel="stylesheet" href="/styles/styles.css">
+    <title>Winnin</title>
 </head>
 <body>
+    <div id="dimmer"></div>
+    <div id="page_behind"></div>
+    <div id="case_main">
     <header>
-        <h1 class="case_title">Jungle</h1>
-        <img src="/images/close_button.png" id="backToWork" class="button"/>
+        <h1 class="case_title">Winnin</h1>
+        <img src="/images/close_button.png" id="close_button" class="button"/>
     </header>
     <main>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt magnam itaque recusandae delectus repudiandae quam cum? Voluptatum, nesciunt dolores sequi quaerat repudiandae, debitis eum suscipit blanditiis molestiae, deleniti tempora consequuntur?
@@ -67,5 +70,135 @@
         Veritatis unde non ad nemo maxime nam, repellendus sunt, quam debitis necessitatibus dolore eius eveniet sequi recusandae, labore consectetur beatae reiciendis. Voluptate asperiores natus atque dolore reiciendis autem quod repellat?
         Aspernatur, delectus cumque modi temporibus ipsum accusantium ad deleniti enim, sapiente quidem cupiditate eaque quis laborum neque cum voluptatem porro. Tempore voluptatem aut optio libero a minima ratione consectetur! Porro.</p>
     </main>
+    </div>
+
+    <script id="close_case">
+        // Executar ao carregar a página
+        document.addEventListener("DOMContentLoaded", () => {
+
+            // Captura os elementos da página
+            const pageBehind = document.getElementById("page_behind");
+            const main = document.getElementById("case_main");
+            const closeButton = document.getElementById("close_button");
+            const dimmer = document.getElementById("dimmer");
+
+            // Aplica os estilos iniciais da div main
+            main.style.transition = "transform 0.7s ease";
+            main.style.willChange = "transform";
+
+            // Aplica os estilos iniciais da div dimmer
+            dimmer.style.transition = "background-color 0.7s ease";
+            dimmer.style.willChange = "background-color";
+
+            // Adiciona o evento de click com o bloco de código
+            closeButton.addEventListener("click", (event) => {
+                // Evite o carregamento padrão da página
+                event.preventDefault();
+
+                // Define o caminho alvo
+                const targetPage = "/work.html";
+
+                // Define o dimmer como transparente
+                dimmer.style.backgroundColor = "rgba(0, 0, 0, 1)";
+
+                // Carrega a página em memória
+                fetch(targetPage)
+                    .then((response) => response.text())
+                    .then((htmlString) => {
+
+                        // Cria um manipulador para o conteúdo obtido
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(htmlString, "text/html");
+
+                        // Remove scripts e elementos não visíveis durante a transição
+                        doc.querySelectorAll("script").forEach((el) => el.remove());
+                        doc.body.querySelectorAll("video[autoplay]").forEach((video) => {
+                            video.removeAttribute("autoplay");
+                            video.pause();
+                        });
+
+                        // Injeta o conteúdo manipulado na div page_behind
+                        pageBehind.innerHTML = doc.body.innerHTML;
+
+                        // Exibe a div page_behind
+                        pageBehind.style.display = "block";
+
+                        // Exibe a div dimmer
+                        dimmer.style.display = "block";
+
+                        // Força reflow para garantir o estado atual do 'main'
+                        main.getBoundingClientRect();
+
+                        // Inicia a animação para fechar a página:
+                        requestAnimationFrame(() => {
+                            dimmer.style.backgroundColor = "rgba(0, 0, 0, 0)";
+                            main.style.transform = "translate3d(0, 100vh, 0)";
+                        });
+
+                        // Aguarda o fim da transição para redirecionar
+                        main.addEventListener("transitionend", function handler(e) {
+                            if (e.propertyName === "transform") {
+                                main.removeEventListener("transitionend", handler);
+
+                                // Redireciona para a página completa
+                                window.location.href = targetPage;
+                            }
+                        });
+                    })
+                    .catch((error) => console.error("Erro ao carregar a página:", error));
+            });
+        });
+    </script>
+
+    <script id="load_videos">
+        document.addEventListener("DOMContentLoaded", () => {
+            loadLazyVideos();
+        });
+    </script>
+
+
+    <script id="lazy">
+        function loadLazyVideos() {
+
+            const lazyVideos = Array.from(document.querySelectorAll("video[data-src]"));
+
+            if ("IntersectionObserver" in window) {
+                const videoObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const video = entry.target;
+                            const source = video.querySelector("source");
+                            if (source && video.dataset.src) {
+                                source.src = video.dataset.src;
+                                video.load();
+                            }
+                            video.play().catch(() => {
+                            });
+                            video.removeAttribute("data-src");
+                            observer.unobserve(video);
+                        }
+                    });
+                }, {
+                    rootMargin: "300px"
+                });
+
+                lazyVideos.forEach(video => {
+                    videoObserver.observe(video);
+                });
+            } else {
+                lazyVideos.forEach(video => {
+                    const source = video.querySelector("source");
+                    if (source && video.dataset.src) {
+                        source.src = video.dataset.src;
+                        video.load();
+                    }
+                    video.play().catch(() => { });
+                    video.removeAttribute("data-src");
+                });
+            }
+
+        }
+    </script>
+    
 </body>
 </html>

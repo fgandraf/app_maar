@@ -20,7 +20,7 @@ header {
 }
 
 main {
-    z-index: 0;
+    z-index: 1;
     width: 100vw;
     height: 100vh;
     padding: 20vh 2vw;
@@ -60,7 +60,7 @@ main {
     box-sizing: border-box;
 }
 
-.__card {
+.card_link {
     display: flex;
     flex-direction: column;
     height: calc(50vh - 40px);
@@ -109,3 +109,31 @@ main {
 .menu_item_text{
     border-bottom: solid 7px black;
 }
+
+#dimmer {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+}
+
+#page_behind{
+    display: none;
+    position: fixed;
+    z-index: 1;
+}
+
+#case_main{
+    z-index: 3;
+    background-color: #ffffff;
+}
+
+#menu_overlay {
+    position: fixed;
+    z-index: 1;
+    display: none;
+    top: -100vh;
+    transition: top 0.5s ease-in;
+}
+#menu_overlay.active { top: 0 }
