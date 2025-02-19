@@ -1,0 +1,71 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    overflow-x: hidden;
+}
+
+#menu_overlay {
+    position: fixed;
+    z-index: 1;
+    display: none;
+    top: -100vh;
+    transition: top 0.5s ease-in;
+}
+#menu_overlay.active { top: 0 }
+
+header {
+    position:fixed;
+    z-index: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+    height: 18vh;
+    padding-left: 3vw;
+    padding-right: 3vw;
+    box-sizing: border-box;
+}
+
+.button { 
+    cursor: pointer;
+    width: 80px;
+    height: 80px;
+}
+
+main {
+    z-index: 0;
+    width: 100vw;
+    height: 100vh;
+    padding: 20vh 2vw;
+    text-align: justify;
+    box-sizing: border-box;
+}
+
+.work_cards_container {
+    display: grid;
+    z-index: 0;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3%;
+    padding: 5% 0;
+    box-sizing: border-box;
+}
+
+.card_link_01 {
+    display: flex;
+    flex-direction: column;
+    height: calc(50vh - 40px);
+    background-image: url(/images/case-claro.png);
+    background-size:cover;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+.card_description{
+    width: 100%;
+    margin-top: 0;
+    font-size: 2.2rem;
+    font-family: Arial;
+    font-weight: lighter;
+}

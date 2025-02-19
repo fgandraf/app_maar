@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles/styles.css">
-    <link rel="stylesheet" href="/styles/overlay.css">
+    <link rel="stylesheet" href="/styles/menu.css">
     <title>Document</title>
 </head>
 
@@ -48,42 +47,7 @@
 
     <div id="page_overlay"></div>
 
-    <script id="loadMenuItems">
-        document.addEventListener("click", function (event) {
-
-            const link = event.target.closest(".__menu_item");
-            const menuBackground = document.getElementById("menu_background");
-            const menuMain = document.getElementById("menu_main");
-
-            if (link) {
-                event.preventDefault();
-                menuBackground.classList.add("dimmer");
-                const targetPage = link.getAttribute("href")
-
-
-                fetch(targetPage)
-                    .then(response => response.text())
-                    .then(html => {
-                        menuBackground.innerHTML = html;
-                        menuBackground.style.display = "block";
-                        menuBackground.offsetHeight;
-                        menuBackground.classList.add("active");
-
-                        setTimeout(() => {
-                            menuMain.classList.add("hide");
-                            menuBackground.classList.remove("dimmer");
-
-                            setTimeout(() => {
-                                window.location.href = targetPage;
-                            }, 700);
-
-
-                        }, 50);
-                    })
-                    .catch(error => console.error("Erro ao carregar a página:", error));
-            }
-        });
-    </script>
+    <script src="/scripts//menu.js"></script>
 
 </body>
 

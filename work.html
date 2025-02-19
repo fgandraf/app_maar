@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles/styles.css">
-    <link rel="stylesheet" href="/styles/overlay.css">
+    <link rel="stylesheet" href="/styles/work.css">
     <script src="/scripts/loadMenu.js"></script>
     <title>MAAR - WORK</title>
 </head>
@@ -13,8 +12,6 @@
 <body>
 
     <nav id="menu_overlay"></nav>
-    <div id="dimmer"></div>
-    <div id="page_overlay"></div>
 
     <header>
         <img src="/images/maarlogo.svg" width="220px">
@@ -25,109 +22,29 @@
         <section class="work_cards_container">
 
             <div>
-                <a id="card1" class="card_link" href="/work/case-nubank.html"></a>
+                <div id="card1" class="card_link_01" link="/work/case-nubank.html"></div>
                 <p class="card_description">CLARO, 100% AI-Powered Branding: Streamlining Telecom Rebranding</p>
             </div>
 
             <div>
-                <a id="card2" class="card_link" href="/work/case-jungle.html"></a>
+                <div id="card2" class="card_link_01" link="/work/case-jungle.html"></div>
                 <p class="card_description">CLARO, 100% AI-Powered Branding: Streamlining Telecom Rebranding</p>
             </div>
 
             <div>
-                <a id="card3" class="card_link" href="/work/case-winnin.html"></a>
+                <div id="card3" class="card_link_01" link="/work/case-winnin.html"></div>
                 <p class="card_description">CLARO, 100% AI-Powered Branding: Streamlining Telecom Rebrandingxto</p>
             </div>
 
             <div>
-                <a id="card4" class="card_link" href="/work/case-claro.html"></a>
+                <div id="card4" class="card_link_01" link="/work/case-claro.html"></div>
                 <p class="card_description">CLARO, 100% AI-Powered Branding: Streamlining Telecom Rebranding</p>
             </div>
 
         </section>
     </main>
 
-    
-
-
-    <script id="load_cases">
-        // Executar ao carregar a página
-        document.addEventListener("DOMContentLoaded", () => {
-
-            // Captura os elementos da página
-            const pageOverlay = document.getElementById("page_overlay");
-            const cards = document.querySelectorAll(".card_link");
-            const dimmer = document.getElementById("dimmer");
-
-            // Aplica os estilos iniciais da div page_overlay
-            pageOverlay.style.transform = "translate3d(0, 100vh, 0)";
-            pageOverlay.style.transition = "transform 0.7s ease";
-            pageOverlay.style.willChange = "transform";
-
-            // Aplica os estilos iniciais da div dimmer
-            dimmer.style.backgroundColor = "rgba(0, 0, 0, 0)";
-            dimmer.style.transition = "background-color 0.7s ease";
-            dimmer.style.willChange = "background-color";
-
-            // Para cada card...
-            cards.forEach(card => {
-
-                // Adiciona o evento de click com o bloco de código
-                card.addEventListener("click", (event) => {
-
-                    // Evite o carregamento padrão da página
-                    event.preventDefault();
-
-                    // Obtém o link associado ao card
-                    const targetPage = card.getAttribute("href");
-
-                    // Carrega a página em memória
-                    fetch(targetPage)
-                        .then(response => response.text())
-                        .then(htmlString => {
-
-                            // Cria um manipulador do conteúdo obtido
-                            const parser = new DOMParser();
-                            const doc = parser.parseFromString(htmlString, "text/html");
-
-                            // Remove scripts e elementos não visíveis durante a transição
-                            doc.querySelectorAll("script, .content_below").forEach(el => el.remove());
-                            doc.body.querySelectorAll("video[autoplay]").forEach(video => {
-                                video.removeAttribute("autoplay");
-                                video.pause();
-                            });
-
-                            // Injeta o conteúdo manipulado na div page_overlay
-                            pageOverlay.innerHTML = doc.body.innerHTML;
-
-                            // Exibe a div page_overlay
-                            pageOverlay.style.display = "block";
-
-                            // Força "reflow" para garantir que o navegador registre o estado inicial
-                            pageOverlay.getBoundingClientRect();
-
-                            // Inicia a animação para subir o overlay e alterar o dimmer
-                            requestAnimationFrame(() => {
-                                pageOverlay.style.transform = "translate3d(0, 0, 0)";
-                                dimmer.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
-                            });
-
-                            // Aguarda o fim da transição para redirecionar
-                            pageOverlay.addEventListener("transitionend", function handler() {
-                                pageOverlay.removeEventListener("transitionend", handler);
-
-                                // Redireciona para a página completa
-                                window.location.href = targetPage;
-
-                            });
-                        })
-
-                        // Caso não seja possível carregar a página, exibe uma mensagem
-                        .catch(error => console.error("Erro ao carregar a página:", error));
-                });
-            });
-        });
-    </script>
+    <script src="/scripts/work.js"></script>
 
 </body>
 
