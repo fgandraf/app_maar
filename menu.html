@@ -11,11 +11,9 @@
 <body>
 
 
-    <div id="menu_background"></div>
+    <div id="page_behind"></div>
 
     <div id="menu_main">
-
-
         <header>
             <img src="/images/maarlogo.svg" width="220px">
             <img src="/images/close_button.png" id="close_menu_button" class="button" />
@@ -23,31 +21,61 @@
 
 
         <footer class="menu_footer">
-            <a href="/index.html" class="__menu_item">
+            <div link="/index.html" class="menu_item">
                 <span>(1)</span>
                 <span class="menu_item_text">HOME</span>
-            </a>
-            <a href="/work.html" class="__menu_item">
+            </div>
+            <div link="/work.html" class="menu_item">
                 <span>(2)</span>
                 <span class="menu_item_text">WORK</span>
-            </a>
-            <a href="/about.html" class="__menu_item">
+            </div>
+            <div link="/about.html" class="menu_item">
                 <span>(3)</span>
                 <span class="menu_item_text">ABOUT</span>
-            </a>
-            <a href="/aiapproach.html" class="__menu_item">
+            </div>
+            <div link="/aiapproach.html" class="menu_item">
                 <span>(4)</span>
                 <span class="menu_item_text">AI APPROACH</span>
-            </a>
+            </div>
         </footer>
-
-
     </div>
 
 
-    <div id="page_overlay"></div>
 
-    <script src="/scripts//menu.js"></script>
+    <script>
+        function menuItems() {
+
+            const links = document.querySelectorAll(".menu_item");
+            const pageBehind = document.getElementById("page_behind");
+            const menuMain = document.getElementById("menu_main");
+
+
+            links.forEach(link => {
+
+                link.addEventListener("click", (event) => {
+
+                    const targetPage = link.getAttribute("link");
+
+                    fetch(targetPage)
+                        .then(response => response.text())
+                        .then(htmlString => {
+
+                            pageBehind.innerHTML = htmlString;
+                            pageBehind.style.display = "block";
+                            pageBehind.offsetHeight;
+                            menuMain.style.top = "-100vh";
+
+
+                            setTimeout(() => {
+                                window.location.href = targetPage;
+                            }, 500);
+
+
+                        });
+                });
+            });
+        }
+    </script>
 
 </body>
 

@@ -6,8 +6,8 @@ body{
     overflow-x: hidden;
 }
 
-#menu_background{
-    z-index: 3;
+#page_behind{
+    z-index: 2;
     width: 100vw;
     height: 100vh;
     position: absolute;
@@ -25,9 +25,8 @@ body{
     left: 0;
     background-color: #ff1f00;
     display: block;
-    transition: top 0.7s ease-out;
+    transition: top 0.7s ease-in-out;
 }
-#menu_main.hide { top: -100vh;}
 
 header {
     position:fixed;
@@ -50,7 +49,6 @@ header {
 
 .menu_footer{
     padding: 5vh;
-    width: 100vw;
     height: 600px;
     position: absolute;
     bottom: 0;
@@ -62,32 +60,17 @@ header {
     box-sizing: border-box;
 }
 
-.__menu_item{
-    display: flex;
-    flex-direction: row;
+.menu_item{
     gap: 1.5rem;
     font-size: 3.5rem;
     font-weight: 600;
     font-family: sans-serif;
     text-decoration: none;
-    box-sizing: border-box;
     color: black;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .menu_item_text{
     border-bottom: solid 7px black;
 }
-
-#page_overlay {
-    position: fixed;
-    z-index: 2;
-    width: 100vw;
-    height: 100vh;
-    display: none;
-
-    bottom: 0;
-    background-color: white;
-    transition: bottom 0.5s ease-in-out;
-}
-#page_overlay.active { bottom: 0; visibility: visible; }

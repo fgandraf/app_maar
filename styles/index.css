@@ -7,14 +7,14 @@ body{
     background-size: cover;
 }
 
-nav {
+#menu_overlay {
     position: fixed;
     z-index: 1;
     display: none;
     top: -100vh;
     transition: top 0.5s ease-in;
 }
-nav.active { top: 0 }
+#menu_overlay.active { top: 0 }
 
 header {
     position:fixed;

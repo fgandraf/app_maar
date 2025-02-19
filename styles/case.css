@@ -6,28 +6,12 @@ body{
     overflow-x: hidden;
 }
 
-#page_behind{
-    width: 100vw;
-    height: 100vh;
-    display: none;
-    position: fixed;
-    background-color: #ffffff;
-    z-index: 1;
-}
-
-#dimmer {
-    width: 100vw;
-    height: 100vh;
-    position: absolute;
-    pointer-events: none;
-    z-index: 1;
-}
-
 #case_main{
     height: 100vh;
     position: fixed;
     z-index: 20;
     overflow: auto; 
+    background-color: #ffffff;
 }
 
 header {

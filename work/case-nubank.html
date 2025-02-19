@@ -4,13 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles/case.css">
     <title>Nubank / Caixinhas</title>
 </head>
 
 <body>
-    <div id="dimmer"></div>
-    <div id="page_behind"></div>
+    <link rel="stylesheet" href="/styles/case.css">
     <div id="case_main">
         <header>
             <h1 class="case_title">Nubank / Caixinhas</h1>
@@ -181,74 +179,113 @@
     </div>
 
 
+    <script id="set_track">
+        function setTrackHeights() {
+            $(".section-height").each(function (index) {
+                let trackWidth = $(this).find(".track").outerWidth();
+                $(this).height(trackWidth);
+            });
+        }
+        setTrackHeights();
+        window.addEventListener("resize", function () {
+            setTrackHeights();
+        });
+    </script>
+    
+    <script id="initial_state">
+        document.addEventListener("DOMContentLoaded", () => {
+    
+            // Cria o elemento dimmer
+            var dimmer = document.createElement('div');
+            dimmer.setAttribute('id', 'dimmer');
+            dimmer.style.width = "100vw";
+            dimmer.style.height = "100vh";
+            dimmer.style.position = "fixed";
+            dimmer.style.top = 0;
+            dimmer.style.left = 0;
+            dimmer.style.zIndex = 1;
+            dimmer.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
+            dimmer.style.display = "none";
+            dimmer.style.transition = "background-color 1.2s ease";
+            dimmer.style.willChange = "background-color";
+            document.body.appendChild(dimmer);
+    
+            // Cria o elemento page_behind
+            var pageBehind = document.createElement('div');
+            pageBehind.setAttribute('id', 'page_behind');
+            pageBehind.style.display = "none";
+            pageBehind.style.position = "fixed";
+            pageBehind.style.zIndex = 0;
+            pageBehind.style.backgroundColor = "white";
+            document.body.appendChild(pageBehind);
+    
+            // Aplica os estilos iniciais da div main
+            const main = document.getElementById("case_main");
+            main.style.transition = "transform 0.7s ease";
+            main.style.willChange = "transform";
+        });
+    </script>
+    
+    
     <script id="close_case">
         // Executar ao carregar a página
         document.addEventListener("DOMContentLoaded", () => {
-
+    
             // Captura os elementos da página
-            const pageBehind = document.getElementById("page_behind");
             const main = document.getElementById("case_main");
-            const closeButton = document.getElementById("close_button");
             const dimmer = document.getElementById("dimmer");
-
-            // Aplica os estilos iniciais da div main
-            main.style.transition = "transform 0.7s ease";
-            main.style.willChange = "transform";
-
-            // Aplica os estilos iniciais da div dimmer
-            dimmer.style.transition = "background-color 0.7s ease";
-            dimmer.style.willChange = "background-color";
-
+            const pageBehind = document.getElementById("page_behind");
+            const closeButton = document.getElementById("close_button");
+    
             // Adiciona o evento de click com o bloco de código
             closeButton.addEventListener("click", (event) => {
                 // Evite o carregamento padrão da página
                 event.preventDefault();
-
+    
                 // Define o caminho alvo
                 const targetPage = "/work.html";
-
+    
                 // Define o dimmer como transparente
                 dimmer.style.backgroundColor = "rgba(0, 0, 0, 1)";
-
+    
                 // Carrega a página em memória
                 fetch(targetPage)
                     .then((response) => response.text())
                     .then((htmlString) => {
-
+    
                         // Cria um manipulador para o conteúdo obtido
                         const parser = new DOMParser();
                         const doc = parser.parseFromString(htmlString, "text/html");
-
+    
                         // Remove scripts e elementos não visíveis durante a transição
                         doc.querySelectorAll("script").forEach((el) => el.remove());
                         doc.body.querySelectorAll("video[autoplay]").forEach((video) => {
                             video.removeAttribute("autoplay");
                             video.pause();
                         });
-
+    
                         // Injeta o conteúdo manipulado na div page_behind
                         pageBehind.innerHTML = doc.body.innerHTML;
-
+    
                         // Exibe a div page_behind
                         pageBehind.style.display = "block";
-
-                        // Exibe a div dimmer
+    
                         dimmer.style.display = "block";
-
+    
                         // Força reflow para garantir o estado atual do 'main'
                         main.getBoundingClientRect();
-
+    
                         // Inicia a animação para fechar a página:
                         requestAnimationFrame(() => {
                             dimmer.style.backgroundColor = "rgba(0, 0, 0, 0)";
                             main.style.transform = "translate3d(0, 100vh, 0)";
                         });
-
+    
                         // Aguarda o fim da transição para redirecionar
                         main.addEventListener("transitionend", function handler(e) {
                             if (e.propertyName === "transform") {
                                 main.removeEventListener("transitionend", handler);
-
+    
                                 // Redireciona para a página completa
                                 window.location.href = targetPage;
                             }
@@ -257,20 +294,21 @@
                     .catch((error) => console.error("Erro ao carregar a página:", error));
             });
         });
+    
     </script>
-
+    
     <script id="load_videos">
         document.addEventListener("DOMContentLoaded", () => {
             loadLazyVideos();
         });
     </script>
-
-
+    
+    
     <script id="lazy">
         function loadLazyVideos() {
-
+    
             const lazyVideos = Array.from(document.querySelectorAll("video[data-src]"));
-
+    
             if ("IntersectionObserver" in window) {
                 const videoObserver = new IntersectionObserver((entries, observer) => {
                     entries.forEach(entry => {
@@ -290,7 +328,7 @@
                 }, {
                     rootMargin: "300px"
                 });
-
+    
                 lazyVideos.forEach(video => {
                     videoObserver.observe(video);
                 });
@@ -305,7 +343,7 @@
                     video.removeAttribute("data-src");
                 });
             }
-
+    
         }
     </script>
 

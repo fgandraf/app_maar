@@ -8,12 +8,29 @@ document.addEventListener("DOMContentLoaded", () => {
         event.preventDefault();
         fetch("/menu.html")
             .then(response => response.text())
-            .then(html => {
-                workPage.classList.add("dimmer");
-                menuOverlay.innerHTML = html;
+            .then(htmlString => {
+
+                //workPage.classList.add("dimmer");
+                menuOverlay.innerHTML = htmlString;
                 menuOverlay.style.display = "block";
                 menuOverlay.offsetHeight;
                 menuOverlay.classList.add("active");
+
+
+
+                // Executa a função de carregamento dos vídeos
+                const scriptsJs = menuOverlay.querySelector("script");
+                if (scriptsJs) {
+                    const scriptContent = scriptsJs.textContent;
+                    eval(scriptContent);
+                    menuItems();
+                } else {
+                    console.error("Script #lazy não encontrado");
+                }
+
+
+
+
 
                 setTimeout(() => {
                     const closeButton = document.getElementById("close_menu_button");
@@ -21,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         closeButton.addEventListener("click", () => {
                             menuOverlay.classList.remove("active");
                             setTimeout(() => {
-                                workPage.classList.remove("dimmer");
+                                //workPage.classList.remove("dimmer");
                                 menuOverlay.style.display = "none";
                                 menuOverlay.innerHTML = "";
                             }, 500);
