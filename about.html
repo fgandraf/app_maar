@@ -11,8 +11,6 @@
 
 <body id="page_about__body">
 
-    <nav id="menu_overlay"></nav>
-
     <main>
         <div id="page_about__header">
             <img src="/images/maarlogo.svg" width="220px">
@@ -24,11 +22,22 @@
         </div>
     </main>
     
-    <script>
-        // ========================= LOAD MENU ========================= //
+    <script id="load_menu">
         document.addEventListener("DOMContentLoaded", () => {
+
+            // Cria o elemento menu_overlay
+            var menuOverlay = document.createElement('div');
+            menuOverlay.setAttribute('id', 'menu_overlay');
+            menuOverlay.style.position = "fixed";
+            menuOverlay.style.zIndex = 5;
+            menuOverlay.style.display = "none";
+            menuOverlay.style.top = "-100vh";
+            menuOverlay.style.left = 0;
+            menuOverlay.style.transition = "top 0.5s ease-in";
+            menuOverlay.style.willChange = "top";
+            document.body.appendChild(menuOverlay);
+
             const menuButton = document.getElementById("menu_button");
-            const menuOverlay = document.getElementById("menu_overlay");
 
             menuButton.addEventListener("click", (event) => {
                 event.preventDefault();
@@ -39,7 +48,7 @@
                         menuOverlay.innerHTML = htmlString;
                         menuOverlay.style.display = "block";
                         menuOverlay.offsetHeight;
-                        menuOverlay.classList.add("active");
+                        menuOverlay.style.top = "0";
 
                         // Inicializa o menu
                         const scriptsJs = menuOverlay.querySelector("script");

@@ -1,9 +1,14 @@
-#menu_overlay {
-    position: fixed;
-    z-index: 5;
-    display: none;
-    top: -100vh;
-    left: 0;
-    transition: top 0.5s ease-in;
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    overflow-x: hidden;
 }
-#menu_overlay.active { top: 0 }
+
+.button { 
+    cursor: pointer;
+    width: 80px;
+    height: 80px;
+}
+

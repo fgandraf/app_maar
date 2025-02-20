@@ -1,15 +1,4 @@
 
-
-#page_work__body{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: sans-serif;
-    overflow-x: hidden;
-}
-
-
-
 #page_work__header {
     position:fixed;
     z-index: 0;
@@ -21,12 +10,6 @@
     padding-left: 3vw;
     padding-right: 3vw;
     box-sizing: border-box;
-}
-
-.button { 
-    cursor: pointer;
-    width: 80px;
-    height: 80px;
 }
 
 #page_work__main {
