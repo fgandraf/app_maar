@@ -1,0 +1,9 @@
+#menu_overlay {
+    position: fixed;
+    z-index: 5;
+    display: none;
+    top: -100vh;
+    left: 0;
+    transition: top 0.5s ease-in;
+}
+#menu_overlay.active { top: 0 }

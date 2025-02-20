@@ -1,22 +1,15 @@
-body{
+main{
     margin: 0;
     padding: 0;
     width: 100vw;
-    height: 100vh;
-    background-image: url(/images/home_background.png);
-    background-size: cover;
 }
 
-#menu_overlay {
-    position: fixed;
-    z-index: 1;
-    display: none;
-    top: -100vh;
-    transition: top 0.5s ease-in;
+body{
+    margin: 0;
+    padding: 0;
 }
-#menu_overlay.active { top: 0 }
 
-header {
+#page_index__header {
     position:fixed;
     z-index: 0;
     display: flex;
@@ -35,3 +28,9 @@ header {
     height: 80px;
 }
 
+#page_index__main{
+    width: 100vw;
+    height: 100vh;
+    background-image: url(/images/home_background.png);
+    background-size: cover;
+}

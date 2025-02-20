@@ -3,23 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles/aiapproach.css">
-    <script src="/scripts/loadMenu.js"></script>
     <title>AI Approach</title>
+    <link rel="stylesheet" href="/styles/aiapproach.css">
+    <link rel="stylesheet" href="/styles/template.css">
 </head>
-<body>
-
+<body id="page_ai__body">
+    
     <nav id="menu_overlay"></nav>
 
-    <header>
-        <img src="/images/maarlogo.svg" width="220px">
-        <img src="/images/menu_button.png" id="menu_button" class="button"/>
-    </header>
-    
     <main>
-        <h1 class="text_cover">AI APPROACH</h1>
+        <div id="page_ai__header">
+            <img src="/images/maarlogo.svg" width="220px">
+            <img src="/images/menu_button.png" id="menu_button" class="button"/>
+        </div>
+        
+        <div id="page_ai__main">
+            <h1 class="text_cover">AI APPROACH</h1>
+        </div>
     </main>
-
     
+    <script>
+        // ========================= LOAD MENU ========================= //
+        document.addEventListener("DOMContentLoaded", () => {
+            const menuButton = document.getElementById("menu_button");
+            const menuOverlay = document.getElementById("menu_overlay");
+
+            menuButton.addEventListener("click", (event) => {
+                event.preventDefault();
+                fetch("/menu.html")
+                    .then(response => response.text())
+                    .then(htmlString => {
+
+                        menuOverlay.innerHTML = htmlString;
+                        menuOverlay.style.display = "block";
+                        menuOverlay.offsetHeight;
+                        menuOverlay.classList.add("active");
+
+                        // Inicializa o menu
+                        const scriptsJs = menuOverlay.querySelector("script");
+                        if (scriptsJs) {
+                            const scriptContent = scriptsJs.textContent;
+                            eval(scriptContent);
+                            menuItems(document.querySelector("html"));
+
+                        } else {
+                            console.error("Função 'menuItems' não encontrada!");
+                        }
+                    })
+                    .catch(error => console.error("Erro ao carregar a página:", error));
+            });
+        });
+    </script>
+
 </body>
 </html>

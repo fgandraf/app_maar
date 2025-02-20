@@ -1,4 +1,4 @@
-body{
+#page_menu__body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -6,17 +6,8 @@ body{
     overflow-x: hidden;
 }
 
-#page_behind{
-    z-index: 2;
-    width: 100vw;
-    height: 100vh;
-    position: absolute;
-    background-color: #ffffff;
-    transition: background-color 0.4s ease-in-out, filter 0.4s ease-in-out;
-    display: none;
-}
 
-#menu_main{
+#page_menu__main{
     z-index: 3;
     width: 100vw;
     height: 100vh;
@@ -28,7 +19,7 @@ body{
     transition: top 0.7s ease-in-out;
 }
 
-header {
+#page_menu__header {
     position:fixed;
     z-index: 0;
     display: flex;
@@ -47,7 +38,7 @@ header {
     height: 80px;
 }
 
-.menu_footer{
+#page_menu__footer{
     padding: 5vh;
     height: 600px;
     position: absolute;

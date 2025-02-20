@@ -4,23 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles/menu.css">
     <title>Document</title>
+    <link rel="stylesheet" href="/styles/menu.css">
+    <link rel="stylesheet" href="/styles/template.css">
 </head>
 
-<body>
+<body id="page_menu__body">
+    
 
-
-    <div id="page_behind"></div>
-
-    <div id="menu_main">
-        <header>
+    <div id="page_menu__main">
+        <header id="page_menu__header">
             <img src="/images/maarlogo.svg" width="220px">
             <img src="/images/close_button.png" id="close_menu_button" class="button" />
         </header>
 
 
-        <footer class="menu_footer">
+        <footer id="page_menu__footer">
             <div link="/index.html" class="menu_item">
                 <span>(1)</span>
                 <span class="menu_item_text">HOME</span>
@@ -41,42 +40,79 @@
     </div>
 
 
-
     <script>
-        function menuItems() {
-
+        function menuItems(parentPage) {
+            
             const links = document.querySelectorAll(".menu_item");
-            const pageBehind = document.getElementById("page_behind");
-            const menuMain = document.getElementById("menu_main");
-
-
+            const menuMain = document.getElementById("page_menu__main");
+    
             links.forEach(link => {
-
-                link.addEventListener("click", (event) => {
-
+                link.addEventListener("click", async (event) => {
+                    event.preventDefault();
                     const targetPage = link.getAttribute("link");
-
-                    fetch(targetPage)
-                        .then(response => response.text())
-                        .then(htmlString => {
-
-                            pageBehind.innerHTML = htmlString;
-                            pageBehind.style.display = "block";
-                            pageBehind.offsetHeight;
-                            menuMain.style.top = "-100vh";
+    
+                    try {
+                        const response = await fetch(targetPage);
+                        const htmlString = await response.text();
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(htmlString, "text/html");
 
 
-                            setTimeout(() => {
-                                window.location.href = targetPage;
-                            }, 500);
-
-
+                        // ===== REMOVER NO WEBFLOW A PARTIR DAQUI
+                        // ===== FOLHA DE ESTILOS                    
+                        // Remove a folha de estilos da página parent
+                        const parentHead = parentPage.querySelector("head");
+                        parentHead.querySelectorAll('link[rel="stylesheet"]').forEach(link => link.remove());
+                        // Adiciona a folha de stilos da página target
+                        doc.head.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+                            const newLink = document.createElement('link');
+                            newLink.rel = link.rel;
+                            newLink.href = link.href;
+                            parentHead.appendChild(newLink);
                         });
+                        // ===== REMOVER NO WEBFLOW ATÉ AQUI
+
+
+                        // Remove todos os script da página parent
+                        parentPage.querySelectorAll("script").forEach(el => el.remove());
+
+                        // Adiciona todos os scripts da página target
+                        doc.body.querySelectorAll("script").forEach(script => {
+                            const newScript = document.createElement('script');
+                            Array.from(script.attributes).forEach(attr => {
+                                newScript.setAttribute(attr.name, attr.value);
+                            });
+                            newScript.textContent = script.textContent;
+                            parentPage.appendChild(newScript);
+                        });
+
+                        
+                        // Insere o novo main sem os scripts
+                        doc.body.querySelectorAll("script").forEach(el => el.remove());
+                        parentPage.querySelector("main").innerHTML = doc.body.innerHTML;
+
+                        // Esconde o menu
+                        menuMain.style.top = "-100vh";
+
+                        // Dispara evento para scripts que dependem de DOMContentLoaded
+                        const event = new Event('DOMContentLoaded', {
+                            bubbles: true,
+                            cancelable: true
+                        });
+                        document.dispatchEvent(event);
+
+                        // Atualiza o histórico
+                        history.pushState({}, '', targetPage);
+
+                    } catch (error) {
+                        console.error('Erro ao carregar a página:', error);
+                    }
                 });
             });
         }
     </script>
 
+    
 </body>
 
 </html>

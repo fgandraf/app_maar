@@ -1,4 +1,10 @@
-body{
+main{
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+}
+
+#page_case__body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -14,7 +20,7 @@ body{
     background-color: #ffffff;
 }
 
-header {
+#page_case__header {
     position:fixed;
     z-index: 0;
     display: flex;
@@ -37,7 +43,7 @@ header {
     height: 80px;
 }
 
-main {
+#page_case__main {
     z-index: 1;
     width: 100vw;
     height: 100vh;
