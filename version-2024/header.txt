@@ -1,0 +1,9 @@
+DESKTOP
+    retangulo
+        9999
+        6630
+    textos
+        9999
+        6570
+
+

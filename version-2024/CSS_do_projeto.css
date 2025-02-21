@@ -1,0 +1,19 @@
+html, body{
+    background-color: #000000;
+  }
+  
+  ::-webkit-scrollbar {
+      width: 5px;
+  }
+  
+  ::-webkit-scrollbar-track {
+      background: #242424;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+      background: #FFFFFF;
+      border-radius: 30px;
+  }
+
+
+/* GRID: 2570 */

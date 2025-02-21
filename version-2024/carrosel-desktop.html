@@ -1,0 +1,509 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+<style>
+    body, p{
+        margin: 0;
+        padding: 0;
+        line-height: 1;
+        font-size: 16px;
+    }
+
+    #links{
+        margin-top: 40px;
+        display: flex;
+        margin-bottom: 60px;
+        gap: 36px;
+        font-size: 30px;
+        color: gray;
+
+        .link_item{
+            padding-bottom: 32px;
+            cursor: pointer;
+        }
+
+        .link_item:hover{
+            color: white;
+        }
+
+        .selected {
+            border-bottom: 2px solid #fff;
+            color: #fff
+        }
+    }
+        
+    .swiper {
+        width: auto;
+        height: 1000px;
+        font-family: "custom_103178";
+        background-color: black;
+    
+        .branding {
+                background: url("https://i-p.rmcdn.net/65cfc372f083eb0014bf4d7e/4631317/image-cb176650-1c48-4dcd-b15e-602c3910216a.png?e=webp&nll=true");
+                background-position-y: -60px;
+                background-position-x: -80px;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+
+        .production {
+            background-image: url("https://i-p.rmcdn.net/65cfc372f083eb0014bf4d7e/4631317/image-49c8d5c6-bb8f-4ac0-b055-dc786afec91f.png?e=webp&nll=true");
+            background-position-x: -40px;
+            background-position-y: -15px;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .vision {
+            background-image: url("https://i-p.rmcdn.net/65cfc372f083eb0014bf4d7e/4631317/image-e79c8ac6-bb61-4c2f-a05d-cdc5dd275ff5.png?e=webp&nll=true");
+            background-position-y: -100px;
+            background-position-x: -70px;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .swiper-slide {
+            width: calc(25% - 35px);
+            height: 738px;
+            background-size: cover;
+            border-radius: 32px;
+
+            .slide_content{
+                margin-top: 140px;
+                height: 538px;
+                padding: 40px;
+                color: white;
+                border-radius: 30px;
+                background-color: #242424;
+
+                .card_header{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    height: 40px;
+
+                    .tags_container{
+                        display: flex;
+                        gap: 8px;
+
+                        .tag{
+                            font-size: 18px;
+                            padding: 8px 16px 12px 16px;
+                            border: 2px solid;
+                            border-radius: 100px;
+                        }
+
+                        .red{
+                            border-color: #F97F7F;
+                            color: #F97F7F;
+                        }
+
+                        .yellow{
+                            border-color: #90FF7E;
+                            color: #90FF7E;
+                        }
+
+                        .white{
+                            border-color: white;
+                            color: white;
+                        }
+                    }
+
+                    
+                }
+
+                .card_main{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    height: 338px;
+
+                    .weeks{
+                        font-size: 18px;
+                        letter-spacing: -0.025em;
+                        margin-bottom: 24px;
+                    }
+
+                    .title{
+                        font-size: 40px;
+                        margin-top: 0;
+                    }
+
+                    .main_description{
+                        font-size: 22px;
+                        margin-top: 12px;
+                        line-height: 28px;
+                        font-weight: 500;
+                        letter-spacing: -0.02em;
+                    }
+                }
+                    
+                .card_footer{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    height: 160px;
+
+                    .subtitle{
+                        font-size: 22px;
+                        line-height: 35px;
+                        font-weight: 500;
+                        letter-spacing: -0.025em;
+                        color: #A7A8A9;
+                    }
+
+                    .description{
+                        font-size: 22px;
+                        line-height: 28px;
+                        font-weight: 500;
+                        letter-spacing: -0.025em;
+                    }
+                }
+            }
+        }
+    }
+</style>
+
+
+<div class="swiper">
+
+    <div id="links">
+        <a class="link_item" onclick="showCategory('branding')">Branding</a>
+        <a class="link_item" onclick="showCategory('production')">Production</a>
+        <a class="link_item" onclick="showCategory('vision')">Vision</a>
+    </div>
+
+    <div class="swiper-wrapper">
+
+        <!-- CARDS - BRANDING -->
+        <!-- branding 1 -->
+        <div class="branding swiper-slide">
+            <div class="slide_content">
+                <div class="card_header">
+                    <div class="tags_container">
+                        <span class="tag red">Strategy</span>
+                        <span class="tag yellow">Design</span>
+                    </div>
+                </div>
+                <div class="card_main">
+                    <p class="weeks">4-6 weeks</p>
+                    <p class="title">Brand modeling</p>
+                    <p class="main_description">For businesses looking to sharpen their brand strategy to achieve internal alignment, unity and directed purpose. Structure your brand to make it more elastic and resilient.</p>
+                </div>
+                <div class="card_footer">
+                    <div>
+                        <p class="subtitle">Who is it for</p>
+                        <p class="description">Creation / Brand Restructure / Reposition</p>
+                    </div>
+                    <div>
+                        <p class="subtitle">Deliveries</p>
+                        <p class="description">Visual spectrum + brand ecosystem</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- branding 2 -->
+        <div class="branding swiper-slide">
+            <div class="slide_content">
+                <div class="card_header">
+                    <div class="tags_container">
+                        <span class="tag red">Strategy</span>
+                        <span class="tag yellow">Design</span>
+                        <span class="tag yellow">Production</span>
+                    </div>
+                </div>
+                <div class="card_main">
+                    <p class="weeks">8-10 weeks</p>
+                    <p class="title">Growth booster</p>
+                    <p class="main_description">For businesses aiming for a significant, influential brand strategy and visual identity to set the stage for accelerated growth.</p>
+                </div>
+                <div class="card_footer">
+                    <div>
+                        <p class="subtitle">Who is it for</p>
+                        <p class="description">Creation / Scale up / Expansion</p>
+                    </div>
+                    <div>
+                        <p class="subtitle">Deliveries</p>
+                        <p class="description">Branding + brand system</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- branding 3 -->
+        <div class="branding swiper-slide">
+            <div class="slide_content">
+                <div class="card_header">
+                    <div class="tags_container">
+                      	<span class="tag yellow">Design</span>
+                        <span class="tag yellow">Production</span>
+                    </div>
+                </div>
+                <div class="card_main">
+                    <p class="weeks">12 weeks</p>
+                    <p class="title">Transformer</p>
+                    <p class="main_description">For businesses aiming for a holistic rebrand, shaping brand culture, communications and extensive activation efforts ensuring a holistic and impactful transformation.</p>
+                </div>
+                <div class="card_footer">
+                    <div>
+                        <p class="subtitle">Who is it for</p>
+                        <p class="description">Refresh / Reposition / Pivot / Restructure</p>
+                    </div>
+                    <div>
+                        <p class="subtitle">Deliveries</p>
+                        <p class="description">branding + brand system + campaign platform</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- branding 4 -->
+        <div class="branding swiper-slide">
+            <div class="slide_content">
+                <div class="card_header">
+                    <div class="tags_container">
+                        <span class="tag white">A.I.</span>
+                        <span class="tag yellow">Design</span>
+                        <span class="tag yellow">Production</span>
+                    </div>
+                </div>
+                <div class="card_main">
+                    <p class="weeks">10-12 weeks</p>
+                    <p class="title">Blitz Branding</p>
+                    <p class="main_description">For dynamic startups with a solid strategic foundation looking to swiftly develop a complete visual identity and guideline system.</p>
+                </div>
+                <div class="card_footer">
+                    <div>
+                        <p class="subtitle">Who is it for</p>
+                        <p class="description">Scale up</p>
+                    </div>
+                    <div>
+                        <p class="subtitle">Deliveries</p>
+                        <p class="description">brand system + campaign platform</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CARDS - PRODUCTION -->
+        <!-- production 1 -->
+        <div class="production swiper-slide">
+            <div class="slide_content">
+                <div class="card_header">
+                    <div class="tags_container">
+                        <span class="tag white">A.I.</span>
+                        <span class="tag yellow">Design</span>
+                        <span class="tag yellow">Production</span>
+                    </div>
+                </div>
+                <div class="card_main">
+                    <p class="weeks">2-4 weeks</p>
+                    <p class="title">A.I. Multiplier</p>
+                    <p class="main_description">For companies seeking rapid growth and hyper personalization, we develop scalable content ideas that boost the brand ecosystem.</p>
+                </div>
+                <div class="card_footer">
+                    <div>
+                        <p class="subtitle">Who is it for</p>
+                        <p class="description">Creation / Scale up / Expansion</p>
+                    </div>
+                    <div>
+                        <p class="subtitle">Deliveries</p>
+                        <p class="description">Photoshoot + illustration + motion system</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- production 2 -->
+        <div class="production swiper-slide">
+            <div class="slide_content">
+                <div class="card_header">
+                    <div class="tags_container">
+                        <span class="tag white">A.I.</span>
+                        <span class="tag yellow">Design</span>
+                        <span class="tag yellow">Production</span>
+                    </div>
+                </div>
+                <div class="card_main">
+                    <p class="weeks">4-6 weeks</p>
+                    <p class="title">Brand Kit</p>
+                    <p class="main_description">For companies requiring a clear and concise way to brief their third-party partners or production companies we develop a comprehensive visual ecosystem.</p>
+                </div>
+                <div class="card_footer">
+                    <div>
+                        <p class="subtitle">Who is it for</p>
+                        <p class="description">Expansion</p>
+                    </div>
+                    <div>
+                        <p class="subtitle">Deliveries</p>
+                        <p class="description">Visual treatment</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- production 3 -->
+        <div class="production swiper-slide">
+            <div class="slide_content">
+                <div class="card_header">
+                    <div class="tags_container">
+                        <span class="tag white">A.I.</span>
+                        <span class="tag yellow">Design</span>
+                    </div>
+                </div>
+                <div class="card_main">
+                    <p class="weeks">12 weeks</p>
+                    <p class="title">Brand Formula A.I.</p>
+                    <p class="main_description">For companies that want to update their assets, but want control over their brand DNA we create an adaptable prompt formula for endless asset creation.</p>
+                </div>
+                <div class="card_footer">
+                    <div>
+                        <p class="subtitle">Who is it for</p>
+                        <p class="description">Expansion / Unity</p>
+                    </div>
+                    <div>
+                        <p class="subtitle">Deliveries</p>
+                        <p class="description">Brand formula + subscription</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- CARDS - VISION -->
+        <!-- vision 1 -->
+        <div class="vision swiper-slide">
+            <div class="slide_content">
+                <div class="card_header">
+                    <div class="tags_container">
+                        <span class="tag red">Strategy</span>
+                        <span class="tag yellow">Design</span>
+                    </div>
+                </div>
+                <div class="card_main">
+                    <p class="weeks">2-4 weeks</p>
+                    <p class="title">/Imagine Lab</p>
+                    <p class="main_description">For executive leadership teams seeking specialized guidance, we help craft an inspiring vision that unites and motivates your entire organization.</p>
+                </div>
+                <div class="card_footer">
+                    <div>
+                        <p class="subtitle">Who is it for</p>
+                        <p class="description">Brand longevity / Pivot / Market Disruption </p>
+                    </div>
+                    <div>
+                        <p class="subtitle">Deliveries</p>
+                        <p class="description">Workshop + Prototype</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- vision 2 -->
+        <div class="vision swiper-slide">
+            <div class="slide_content">
+                <div class="card_header">
+                    <div class="tags_container">
+                        <span class="tag white">A.I.</span>
+                        <span class="tag yellow">Design</span>
+                        <span class="tag red">Strategy</span>
+                    </div>
+                </div>
+                <div class="card_main">
+                    <p class="weeks">4-6 weeks</p>
+                    <p class="title">Product Innovation</p>
+                    <p class="main_description">We investigate different roadmaps for your products, helping companies to re-define its path or create completely new routes.</p>
+                </div>
+                <div class="card_footer">
+                    <div>
+                        <p class="subtitle">Who is it for</p>
+                        <p class="description">Innovation / Future proof</p>
+                    </div>
+                    <div>
+                        <p class="subtitle">Deliveries</p>
+                        <p class="description">Workshop + Prototype</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- vision 3 -->
+        <div class="vision swiper-slide">
+            <div class="slide_content">
+                <div class="card_header">
+                    <div class="tags_container">
+                        <span class="tag white">A.I.</span>
+                        <span class="tag yellow">Design</span>
+                        <span class="tag red">Strategy</span>
+                    </div>
+                </div>
+                <div class="card_main">
+                    <p class="weeks">2-4 weeks</p>
+                    <p class="title">Brand Future Vision</p>
+                    <p class="main_description">Our AI-driven branding simulates desirable futures, creating a future-proof brand that fuels transformation and drives business success.</p>
+                </div>
+                <div class="card_footer">
+                    <div>
+                        <p class="subtitle">Who is it for</p>
+                        <p class="description">Innovation / Future proof</p>
+                    </div>
+                    <div>
+                        <p class="subtitle">Deliveries</p>
+                        <p class="description">Workshop + Prototype</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- vision 4 -->
+        <div class="vision swiper-slide">
+            <div class="slide_content">
+                <div class="card_header">
+                    <div class="tags_container">
+                        <span class="tag white">A.I.</span>
+                        <span class="tag yellow">Design</span>
+                        <span class="tag red">Strategy</span>
+                    </div>
+                </div>
+                <div class="card_main">
+                    <p class="weeks">4-6 weeks</p>
+                    <p class="title">Experience Vision</p>
+                    <p class="main_description">For companies aiming inevestigate the evolving digital landscape, our prototype-driven approach explores  digital experiences, fostering innovative solutions.</p>
+                </div>
+                <div class="card_footer">
+                    <div>
+                        <p class="subtitle">Who is it for</p>
+                        <p class="description">Creation / Brand Restructure / Reposition</p>
+                    </div>
+                    <div>
+                        <p class="subtitle">Deliveries</p>
+                        <p class="description">Workshop + Prototype</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var swiper = new Swiper('.swiper', {
+        slidesPerView: 'auto',
+        spaceBetween: 45,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        allowTouchMove: false,
+    });
+
+    function showCategory(category) {
+        var links = document.getElementById('links').getElementsByTagName('a');
+        for (var i = 0; i < links.length; i++) {
+            links[i].classList.remove('selected');
+        }
+        var cards = document.getElementsByClassName('swiper-slide');
+        for (var i = 0; i < cards.length; i++) {
+            cards[i].style.display = 'none';
+        }
+        var selectedCards = document.getElementsByClassName(category);
+        for (var i = 0; i < selectedCards.length; i++) {
+            selectedCards[i].style.display = 'block';
+        }
+        event.currentTarget.classList.add('selected');
+    }
+    showCategory('branding');
+</script>
+<script>
+    var links = document.getElementById('links').getElementsByTagName('a')[0];
+    links.classList.add('selected')
+</script>
