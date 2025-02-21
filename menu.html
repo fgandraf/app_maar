@@ -102,7 +102,7 @@
                         const dimmer = parentPage.ownerDocument.getElementById("dimmer");
                         menuOverlay.offsetHeight;
                         requestAnimationFrame(() => {
-                            menuOverlay.style.top = "-100vh";
+                            menuOverlay.style.transform = "translate3d(0, -100vh, 0)";
                             dimmer.style.backgroundColor = "rgba(0, 0, 0, 0)";
                             setTimeout(() => {
                                 menuOverlay.style.display = "none";
