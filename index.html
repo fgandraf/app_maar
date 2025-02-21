@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAAR Company</title>
+    <title>MAAR Company - Index</title>
     <link rel="stylesheet" href="/styles/index.css">
     <link rel="stylesheet" href="/styles/template.css">
 </head>
@@ -19,20 +19,26 @@
         <div id="page_index__main"></div>
     </main>
 
+    
+
+
     <script id="load_menu">
         document.addEventListener("DOMContentLoaded", () => {
 
-            // Cria o elemento menu_overlay
-            var menuOverlay = document.createElement('div');
-            menuOverlay.setAttribute('id', 'menu_overlay');
-            menuOverlay.style.position = "fixed";
-            menuOverlay.style.zIndex = 5;
-            menuOverlay.style.display = "none";
-            menuOverlay.style.top = "-100vh";
-            menuOverlay.style.left = 0;
-            menuOverlay.style.transition = "top 0.5s ease-in";
-            menuOverlay.style.willChange = "top";
-            document.body.appendChild(menuOverlay);
+            // Verifica se o elemento 'menu_overlay' já existe
+            if (!document.getElementById('menu_overlay')) {
+                // Cria o elemento menu_overlay
+                var menuOverlay = document.createElement('div');
+                menuOverlay.setAttribute('id', 'menu_overlay');
+                menuOverlay.style.position = "fixed";
+                menuOverlay.style.zIndex = 5;
+                menuOverlay.style.display = "none";
+                menuOverlay.style.top = "-100vh";
+                menuOverlay.style.left = 0;
+                menuOverlay.style.transition = "top 0.5s ease-in";
+                menuOverlay.style.willChange = "top";
+                document.body.appendChild(menuOverlay);
+            }
 
             const menuButton = document.getElementById("menu_button");
 

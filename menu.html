@@ -72,7 +72,6 @@
                         });
                         // ===== REMOVER NO WEBFLOW ATÉ AQUI
 
-
                         // Remove todos os script da página parent
                         parentPage.querySelectorAll("script").forEach(el => el.remove());
 
@@ -85,7 +84,6 @@
                             newScript.textContent = script.textContent;
                             parentPage.appendChild(newScript);
                         });
-
                         
                         // Insere o novo main sem os scripts
                         doc.body.querySelectorAll("script").forEach(el => el.remove());
