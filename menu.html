@@ -56,21 +56,10 @@
                         const htmlString = await response.text();
                         const parser = new DOMParser();
                         const doc = parser.parseFromString(htmlString, "text/html");
-
-
-                        // ===== REMOVER NO WEBFLOW A PARTIR DAQUI
-                        // ===== FOLHA DE ESTILOS                    
-                        // Remove a folha de estilos da página parent
+           
+                        // Substitui o head da parentPage pelo head da targetPage
                         const parentHead = parentPage.querySelector("head");
-                        parentHead.querySelectorAll('link[rel="stylesheet"]').forEach(link => link.remove());
-                        // Adiciona a folha de stilos da página target
-                        doc.head.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
-                            const newLink = document.createElement('link');
-                            newLink.rel = link.rel;
-                            newLink.href = link.href;
-                            parentHead.appendChild(newLink);
-                        });
-                        // ===== REMOVER NO WEBFLOW ATÉ AQUI
+                        parentHead.innerHTML = doc.head.innerHTML;
 
                         // Remove todos os script da página parent
                         parentPage.querySelectorAll("script").forEach(el => el.remove());
