@@ -21,22 +21,22 @@
         <section class="work_cards_container">
 
             <div>
-                <div id="card1" class="card_link_01" link="/work/case-nubank.html"></div>
+                <div id="card1" class="card_link" link="/work/case-nubank.html"></div>
                 <p class="card_description">CLARO, 100% AI-Powered Branding: Streamlining Telecom Rebranding</p>
             </div>
 
             <div>
-                <div id="card2" class="card_link_01" link="/work/case-jungle.html"></div>
+                <div id="card2" class="card_link" link="/work/case-jungle.html"></div>
                 <p class="card_description">CLARO, 100% AI-Powered Branding: Streamlining Telecom Rebranding</p>
             </div>
 
             <div>
-                <div id="card3" class="card_link_01" link="/work/case-winnin.html"></div>
+                <div id="card3" class="card_link" link="/work/case-winnin.html"></div>
                 <p class="card_description">CLARO, 100% AI-Powered Branding: Streamlining Telecom Rebrandingxto</p>
             </div>
 
             <div>
-                <div id="card4" class="card_link_01" link="/work/case-claro.html"></div>
+                <div id="card4" class="card_link" link="/work/case-claro.html"></div>
                 <p class="card_description">CLARO, 100% AI-Powered Branding: Streamlining Telecom Rebranding</p>
             </div>
 
@@ -95,40 +95,53 @@
     <script id="open_case">
         document.addEventListener("DOMContentLoaded", () => {
 
-            // Cria o elemento dimmer
-            var dimmer = document.createElement('div');
-            dimmer.setAttribute('id', 'dimmer');
-            dimmer.style.width = "100vw";
-            dimmer.style.height = "100vh";
-            dimmer.style.position = "fixed";
-            dimmer.style.top = 0;
-            dimmer.style.left = 0;
-            dimmer.style.zIndex = 2;
-            dimmer.style.backgroundColor = "rgba(0, 0, 0, 0)";
-            dimmer.style.display = "none";
-            dimmer.style.transition = "background-color 1.2s ease";
-            dimmer.style.willChange = "background-color";
-            document.body.appendChild(dimmer);
+            // Verifica se o elemento 'dimmer' já existe
+            if (!document.getElementById('dimmer')) {
+                // Cria o elemento dimmer
+                var dimmer = document.createElement('div');
+                dimmer.setAttribute('id', 'dimmer');
+                dimmer.style.width = "100vw";
+                dimmer.style.height = "100vh";
+                dimmer.style.position = "fixed";
+                dimmer.style.top = 0;
+                dimmer.style.left = 0;
+                dimmer.style.zIndex = 2;
+                dimmer.style.backgroundColor = "rgba(0, 0, 0, 0)";
+                dimmer.style.display = "none";
+                dimmer.style.transition = "background-color 1.2s ease";
+                dimmer.style.willChange = "background-color";
+                document.body.appendChild(dimmer);
+            }
+            else{
+                var dimmer = document.getElementById('dimmer');
+            }
 
-            // Cria o elemento page_overlay
-            var pageOverlay = document.createElement('div');
-            pageOverlay.setAttribute('id', 'page_overlay');
-            pageOverlay.style.width = "100vw";
-            pageOverlay.style.height = "100vh";
-            pageOverlay.style.display = "none";
-            pageOverlay.style.overflow = "auto";
-            pageOverlay.style.position = "fixed";
-            pageOverlay.style.top = 0;
-            pageOverlay.style.left = 0;
-            pageOverlay.style.zIndex = 500;
-            pageOverlay.style.backgroundColor = "white";
-            pageOverlay.style.transform = "translate3d(0, 100vh, 0)";
-            pageOverlay.style.transition = "transform 0.7s ease";
-            pageOverlay.style.willChange = "transform";
-            document.body.appendChild(pageOverlay);
+            // Verifica se o elemento 'page_overlay' já existe
+            if (!document.getElementById('page_overlay')) {
+                // Cria o elemento page_overlay
+                var pageOverlay = document.createElement('div');
+                pageOverlay.setAttribute('id', 'page_overlay');
+                pageOverlay.style.width = "100vw";
+                pageOverlay.style.height = "100vh";
+                pageOverlay.style.display = "none";
+                pageOverlay.style.overflow = "auto";
+                pageOverlay.style.position = "fixed";
+                pageOverlay.style.top = 0;
+                pageOverlay.style.left = 0;
+                pageOverlay.style.zIndex = 500;
+                pageOverlay.style.backgroundColor = "white";
+                pageOverlay.style.transform = "translate3d(0, 100vh, 0)";
+                pageOverlay.style.transition = "transform 0.7s ease";
+                pageOverlay.style.willChange = "transform";
+                document.body.appendChild(pageOverlay);
+            }
+            else{
+                var pageOverlay = document.getElementById('page_overlay');
+            }
 
             // Captura os cards da página
-            const cards = document.querySelectorAll(".card_link_01");
+            const cards = document.querySelectorAll(".card_link");
+            
 
             // Para cada card, atribui um evento clique
             cards.forEach(card => {

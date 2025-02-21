@@ -30,7 +30,7 @@
     box-sizing: border-box;
 }
 
-.card_link_01 {
+.card_link {
     display: flex;
     flex-direction: column;
     height: calc(50vh - 40px);

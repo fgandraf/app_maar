@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/styles/template.css">
 </head>
 
-<body id="page_menu__body">
+<body>
     
 
     <div id="page_menu__main">
@@ -43,7 +43,7 @@
     <script id="menu_items">
         function menuItems(parentPage) {
             const links = document.querySelectorAll(".menu_item");
-    
+
             links.forEach(link => {
                 link.addEventListener("click", async (event) => {
                     const targetPage = link.getAttribute("link");
@@ -79,7 +79,7 @@
                         const parentBody = parentPage.querySelector("body");
                         // --- Limpa o body da parentPage sem excluir o elemento menu_overlay
                         Array.from(parentBody.children).forEach(child => {
-                            if (child.id != 'menu_overlay') {
+                            if (child.id != 'menu_overlay' && child.id != 'dimmer') {
                                 parentBody.removeChild(child);
                             }
                         });
@@ -99,12 +99,18 @@
 
                         // --- esconde o menu
                         const menuOverlay = parentPage.ownerDocument.getElementById("menu_overlay");
-                        if (menuOverlay) {
-                            menuOverlay.offsetHeight;
+                        const dimmer = parentPage.ownerDocument.getElementById("dimmer");
+                        menuOverlay.offsetHeight;
+                        requestAnimationFrame(() => {
                             menuOverlay.style.top = "-100vh";
-                        }
+                            dimmer.style.backgroundColor = "rgba(0, 0, 0, 0)";
+                            setTimeout(() => {
+                                menuOverlay.style.display = "none";
+                                dimmer.style.display = "none";
+                            }, 500);
+                        });
+                        
 
-    
                         // --- dispara os scripts
                         const event = new Event('DOMContentLoaded', {
                             bubbles: true,

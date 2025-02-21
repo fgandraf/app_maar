@@ -39,9 +39,34 @@
                 menuOverlay.style.willChange = "top";
                 document.body.appendChild(menuOverlay);
             }
+            else{
+                var menuOverlay = document.getElementById("menu_overlay");
+            }
+
+            // Verifica se o elemento 'dimmer' já existe
+            if (!document.getElementById('dimmer')) {
+                // Cria o elemento dimmer
+                var dimmer = document.createElement('div');
+                dimmer.setAttribute('id', 'dimmer');
+                dimmer.style.width = "100vw";
+                dimmer.style.height = "100vh";
+                dimmer.style.position = "fixed";
+                dimmer.style.top = 0;
+                dimmer.style.left = 0;
+                dimmer.style.zIndex = 4;
+                dimmer.style.backgroundColor = "rgba(0, 0, 0, 0)";
+                dimmer.style.display = "none";
+                dimmer.style.transition = "background-color 0.5s ease-in-out";
+                dimmer.style.willChange = "background-color";
+                document.body.appendChild(dimmer);
+            }
+            else{
+                var dimmer = document.getElementById("dimmer");
+            }
 
             const menuButton = document.getElementById("menu_button");
-
+            
+            
             menuButton.addEventListener("click", (event) => {
                 event.preventDefault();
                 fetch("/menu.html")
@@ -50,9 +75,12 @@
 
                         menuOverlay.innerHTML = htmlString;
                         menuOverlay.style.display = "block";
+                        dimmer.style.display = "block";
                         menuOverlay.offsetHeight;
-                        menuOverlay.style.top = "0";
 
+                        dimmer.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
+                        menuOverlay.style.top = "0";
+                    
                         // Inicializa o menu
                         const scriptsJs = menuOverlay.querySelector("script");
                         if (scriptsJs) {
