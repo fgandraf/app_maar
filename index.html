@@ -11,13 +11,13 @@
 
 <body>
 
-    <main>
-        <div id="page_index__header">
-            <img src="/images/maarlogo.svg" width="220px">
-            <img src="/images/menu_button.png" id="menu_button" class="button" />
-        </div>
-        <div id="page_index__main"></div>
-    </main>
+
+    <div id="page_index__header">
+        <img src="/images/maarlogo.svg" width="220px">
+        <img src="/images/menu_button.png" id="menu_button" class="button" />
+    </div>
+    <div id="page_index__main"></div>
+
 
     
 
@@ -35,7 +35,7 @@
                 menuOverlay.style.display = "none";
                 menuOverlay.style.top = "-100vh";
                 menuOverlay.style.left = 0;
-                menuOverlay.style.transition = "top 0.5s ease-in";
+                menuOverlay.style.transition = "top 0.5s ease-in-out";
                 menuOverlay.style.willChange = "top";
                 document.body.appendChild(menuOverlay);
             }
