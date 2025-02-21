@@ -54,6 +54,9 @@
                         const parser = new DOMParser();
                         const doc = parser.parseFromString(htmlString, "text/html");
 
+                        // Captura a URL atual antes da navegação
+                        const parentUrl = window.location.href;
+
                         // --- Obtém o head da parentPage
                         const parentHead = parentPage.querySelector("head");
                         // --- Limpa o head da parentPage
@@ -109,9 +112,18 @@
                         });
                         document.dispatchEvent(event);
 
+                        // --- Salva a página atual no histórico antes da navegação
+                        history.replaceState({ parentUrl }, '', parentUrl);
 
                         // --- atualiza o histórico
                         history.pushState({}, '', targetPage);
+                        
+                        // --- Intercepta o evento 'popstate' para capturar o botão voltar
+                        window.addEventListener('popstate', (event) => {
+                            if (event.state && event.state.parentUrl) {
+                                window.location.href = event.state.parentUrl; // Redireciona para a página original
+                            }
+                        });
 
 
                     } catch (error) {

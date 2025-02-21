@@ -12,39 +12,39 @@
 <body id="page_work__body">
 
 
-        <div id="page_work__header">
-            <img src="/images/maarlogo.svg" width="220px">
-            <img src="/images/menu_button.png" id="menu_button" class="button" />
-        </div>
-    
-        <div id="page_work__main">
-            <section class="work_cards_container">
-    
-                <div>
-                    <div id="card1" class="card_link_01" link="/work/case-nubank.html"></div>
-                    <p class="card_description">CLARO, 100% AI-Powered Branding: Streamlining Telecom Rebranding</p>
-                </div>
-    
-                <div>
-                    <div id="card2" class="card_link_01" link="/work/case-jungle.html"></div>
-                    <p class="card_description">CLARO, 100% AI-Powered Branding: Streamlining Telecom Rebranding</p>
-                </div>
-    
-                <div>
-                    <div id="card3" class="card_link_01" link="/work/case-winnin.html"></div>
-                    <p class="card_description">CLARO, 100% AI-Powered Branding: Streamlining Telecom Rebrandingxto</p>
-                </div>
-    
-                <div>
-                    <div id="card4" class="card_link_01" link="/work/case-claro.html"></div>
-                    <p class="card_description">CLARO, 100% AI-Powered Branding: Streamlining Telecom Rebranding</p>
-                </div>
-    
-            </section>
-        </div>
+    <div id="page_work__header">
+        <img src="/images/maarlogo.svg" width="220px">
+        <img src="/images/menu_button.png" id="menu_button" class="button" />
+    </div>
+
+    <div id="page_work__main">
+        <section class="work_cards_container">
+
+            <div>
+                <div id="card1" class="card_link_01" link="/work/case-nubank.html"></div>
+                <p class="card_description">CLARO, 100% AI-Powered Branding: Streamlining Telecom Rebranding</p>
+            </div>
+
+            <div>
+                <div id="card2" class="card_link_01" link="/work/case-jungle.html"></div>
+                <p class="card_description">CLARO, 100% AI-Powered Branding: Streamlining Telecom Rebranding</p>
+            </div>
+
+            <div>
+                <div id="card3" class="card_link_01" link="/work/case-winnin.html"></div>
+                <p class="card_description">CLARO, 100% AI-Powered Branding: Streamlining Telecom Rebrandingxto</p>
+            </div>
+
+            <div>
+                <div id="card4" class="card_link_01" link="/work/case-claro.html"></div>
+                <p class="card_description">CLARO, 100% AI-Powered Branding: Streamlining Telecom Rebranding</p>
+            </div>
+
+        </section>
+    </div>
 
 
-    
+
     <script id="load_menu">
         document.addEventListener("DOMContentLoaded", () => {
 
@@ -134,8 +134,8 @@
             cards.forEach(card => {
                 card.addEventListener("click", (event) => {
 
-                    // Previne o carreamento padrão
-                    event.preventDefault();
+                    // Captura a URL atual antes da navegação
+                    const parentUrl = window.location.href;
 
                     // Obtém o endereço alvo do card
                     const targetPage = card.getAttribute("link");
@@ -172,8 +172,18 @@
                             pageOverlay.addEventListener("transitionend", function handler() {
                                 pageOverlay.removeEventListener("transitionend", handler);
 
+                                // --- Salva a página atual no histórico antes da navegação
+                                history.replaceState({ parentUrl }, '', parentUrl);
+
                                 // Atualiza a barra de endereço e oculta a rolagem de trás
                                 history.pushState({}, '', targetPage);
+
+                                // --- Intercepta o evento 'popstate' para capturar o botão voltar
+                                window.addEventListener('popstate', (event) => {
+                                    if (event.state && event.state.parentUrl) {
+                                        window.location.href = event.state.parentUrl; // Redireciona para a página original
+                                    }
+                                });
 
                                 // Oculta a rolagem de trás
                                 document.body.style.overflow = "hidden";
