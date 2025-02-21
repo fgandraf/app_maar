@@ -40,13 +40,12 @@
     </div>
 
 
-    <script>
+    <script id="menu_items">
         function menuItems(parentPage) {
             const links = document.querySelectorAll(".menu_item");
     
             links.forEach(link => {
                 link.addEventListener("click", async (event) => {
-                    event.preventDefault();
                     const targetPage = link.getAttribute("link");
     
                     try {
@@ -54,43 +53,67 @@
                         const htmlString = await response.text();
                         const parser = new DOMParser();
                         const doc = parser.parseFromString(htmlString, "text/html");
-    
-                        // Obtém o head da parentPage
+
+                        // --- Obtém o head da parentPage
                         const parentHead = parentPage.querySelector("head");
-    
-                        // Substitui o head da parentPage pelo head da targetPage
-                        parentHead.innerHTML = doc.head.innerHTML;
-    
-                        // Obtém o body da parentPage
+                        // --- Limpa o head da parentPage
+                        parentHead.innerHTML = "";
+                        // --- Adiciona scripts do head da targetPage
+                            doc.head.querySelectorAll("script").forEach(script => {
+                            const newScript = document.createElement('script');
+                            Array.from(script.attributes).forEach(attr => {
+                                newScript.setAttribute(attr.name, attr.value);
+                            });
+                            newScript.textContent = script.textContent;
+                            parentHead.appendChild(newScript);
+                            script.remove();
+                        });
+                        // --- Adiciona o restante do head da targetPage
+                        parentHead.innerHTML += doc.head.innerHTML;
+
+
+                        // --- Obtém o body da parentPage
                         const parentBody = parentPage.querySelector("body");
-    
-                        // Limpa o body da parentPage sem excluir o elemento menu_overlay
+                        // --- Limpa o body da parentPage sem excluir o elemento menu_overlay
                         Array.from(parentBody.children).forEach(child => {
                             if (child.id != 'menu_overlay') {
                                 parentBody.removeChild(child);
                             }
                         });
-    
-                        // Acrescenta o body da targetPage no body da parentPage
+                        // --- Adiciona scripts do body da targetPage
+                         doc.body.querySelectorAll("script").forEach(script => {
+                            const newScript = document.createElement('script');
+                            Array.from(script.attributes).forEach(attr => {
+                                newScript.setAttribute(attr.name, attr.value);
+                            });
+                            newScript.textContent = script.textContent;
+                            parentBody.appendChild(newScript);
+                            script.remove();
+                        });
+                        // --- Acrescenta o restante do body da targetPage
                         parentBody.innerHTML += doc.body.innerHTML;
-    
-                        // Esconde o menu com transição
+
+
+                        // --- esconde o menu
                         const menuOverlay = parentPage.ownerDocument.getElementById("menu_overlay");
                         if (menuOverlay) {
                             menuOverlay.offsetHeight;
                             menuOverlay.style.top = "-100vh";
                         }
+
     
-                        // Dispara evento para scripts que dependem de DOMContentLoaded
+                        // --- dispara os scripts
                         const event = new Event('DOMContentLoaded', {
                             bubbles: true,
                             cancelable: true
                         });
                         document.dispatchEvent(event);
-    
-                        // Atualiza o histórico
+
+
+                        // --- atualiza o histórico
                         history.pushState({}, '', targetPage);
-    
+
+
                     } catch (error) {
                         console.error('Erro ao carregar a página:', error);
                     }
