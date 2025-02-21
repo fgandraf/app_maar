@@ -11,18 +11,6 @@
     transition: top 0.7s ease-in-out;
 }
 
-#page_menu__header {
-    position:fixed;
-    z-index: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100vw;
-    height: 18vh;
-    padding-left: 3vw;
-    padding-right: 3vw;
-    box-sizing: border-box;
-}
 
 #page_menu__footer{
     padding: 5vh;

@@ -1,16 +1,4 @@
 
-#page_index__header {
-    position:fixed;
-    z-index: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100vw;
-    height: 18vh;
-    padding-left: 3vw;
-    padding-right: 3vw;
-    box-sizing: border-box;
-}
 
 #page_index__main{
     width: 100vw;

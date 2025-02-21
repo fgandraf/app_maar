@@ -5,19 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MAAR Company</title>
-    <link rel="stylesheet" href="/styles/about.css">
-    <link rel="stylesheet" href="/styles/template.css">
+    <link rel="stylesheet" href="/styles/styles.css">
 </head>
 
 <body id="page_about__body">
 
     <main>
-        <div id="page_about__header">
+        <div class="default_header">
             <img src="/images/maarlogo.svg" width="220px">
             <img src="/images/menu_button.png" id="menu_button" class="button" />
         </div>
     
-        <div id="page_about__main">
+        <div class="default_main">
             <h1 class="text_cover">ABOUT</h1>
         </div>
     </main>
@@ -25,20 +24,49 @@
     <script id="load_menu">
         document.addEventListener("DOMContentLoaded", () => {
 
-            // Cria o elemento menu_overlay
-            var menuOverlay = document.createElement('div');
-            menuOverlay.setAttribute('id', 'menu_overlay');
-            menuOverlay.style.position = "fixed";
-            menuOverlay.style.zIndex = 5;
-            menuOverlay.style.display = "none";
-            menuOverlay.style.top = "-100vh";
-            menuOverlay.style.left = 0;
-            menuOverlay.style.transition = "top 0.5s ease-in";
-            menuOverlay.style.willChange = "top";
-            document.body.appendChild(menuOverlay);
+            // Verifica se o elemento 'menu_overlay' já existe
+            if (!document.getElementById('menu_overlay')) {
+                // Cria o elemento menu_overlay
+                var menuOverlay = document.createElement('div');
+                menuOverlay.setAttribute('id', 'menu_overlay');
+                menuOverlay.style.position = "fixed";
+                menuOverlay.style.zIndex = 5;
+                menuOverlay.style.display = "none";
+                menuOverlay.style.top = 0;
+                menuOverlay.style.left = 0;
+                menuOverlay.style.transform = "translate3d(0, -100vh, 0)";
+                menuOverlay.style.transition = "transform 0.5s ease-in-out";
+                menuOverlay.style.willChange = "transform";
+                document.body.appendChild(menuOverlay);
+            }
+            else{
+                var menuOverlay = document.getElementById("menu_overlay");
+            }
+
+            // Verifica se o elemento 'dimmer' já existe
+            if (!document.getElementById('dimmer')) {
+                // Cria o elemento dimmer
+                var dimmer = document.createElement('div');
+                dimmer.setAttribute('id', 'dimmer');
+                dimmer.style.width = "100vw";
+                dimmer.style.height = "100vh";
+                dimmer.style.position = "fixed";
+                dimmer.style.top = 0;
+                dimmer.style.left = 0;
+                dimmer.style.zIndex = 4;
+                dimmer.style.backgroundColor = "rgba(0, 0, 0, 0)";
+                dimmer.style.display = "none";
+                dimmer.style.transition = "background-color 0.5s ease-in-out";
+                dimmer.style.willChange = "background-color";
+                document.body.appendChild(dimmer);
+            }
+            else{
+                var dimmer = document.getElementById("dimmer");
+            }
 
             const menuButton = document.getElementById("menu_button");
-
+            
+            
             menuButton.addEventListener("click", (event) => {
                 event.preventDefault();
                 fetch("/menu.html")
@@ -47,9 +75,12 @@
 
                         menuOverlay.innerHTML = htmlString;
                         menuOverlay.style.display = "block";
+                        dimmer.style.display = "block";
                         menuOverlay.offsetHeight;
-                        menuOverlay.style.top = "0";
 
+                        dimmer.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
+                        menuOverlay.style.transform = "translate3d(0, 0, 0)";
+                    
                         // Inicializa o menu
                         const scriptsJs = menuOverlay.querySelector("script");
                         if (scriptsJs) {
