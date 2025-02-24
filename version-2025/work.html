@@ -176,9 +176,6 @@
             cards.forEach(card => {
                 card.addEventListener("click", (event) => {
 
-                    // Captura a URL atual antes da navegação
-                    const parentUrl = window.location.href;
-
                     // Obtém o endereço alvo do card
                     const targetPage = card.getAttribute("link");
 
@@ -213,6 +210,9 @@
                             // Após a animação
                             pageOverlay.addEventListener("transitionend", function handler() {
                                 pageOverlay.removeEventListener("transitionend", handler);
+
+                                // Captura a URL atual antes da navegação
+                                const parentUrl = window.location.href;
 
                                 // --- Salva a página atual no histórico antes da navegação
                                 history.replaceState({ parentUrl }, '', parentUrl);
