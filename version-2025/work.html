@@ -90,21 +90,25 @@
 
             const menuButton = document.getElementById("menu_button");
             
-            
             menuButton.addEventListener("click", (event) => {
                 event.preventDefault();
                 fetch("/menu.html")
                     .then(response => response.text())
                     .then(htmlString => {
 
+                        // hide scrollbar
+                        document.body.style.overflowY = "hidden";
+
                         menuOverlay.innerHTML = htmlString;
                         menuOverlay.style.display = "block";
                         dimmer.style.display = "block";
                         menuOverlay.offsetHeight;
 
-                        dimmer.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
-                        menuOverlay.style.transform = "translate3d(0, 0, 0)";
-                    
+                        requestAnimationFrame(() => {
+                            dimmer.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
+                            menuOverlay.style.transform = "translate3d(0, 0, 0)";
+                        });
+
                         // Inicializa o menu
                         const scriptsJs = menuOverlay.querySelector("script");
                         if (scriptsJs) {
@@ -115,6 +119,22 @@
                         } else {
                             console.error("Função 'menuItems' não encontrada!");
                         }
+
+                        const closeButton = menuOverlay.querySelector("#close_menu_button");
+                        closeButton.addEventListener("click", (event) => {
+
+                            requestAnimationFrame(() => {
+                            dimmer.style.backgroundColor = "rgba(0, 0, 0, 0)";
+                            menuOverlay.style.transform = "translate3d(0, -100vh, 0)";
+                                setTimeout(() => {
+                                    document.body.style.overflowY = "auto";
+                                    menuOverlay.style.display = "none";
+                                    dimmer.style.display = "none";
+                                }, 500);
+                            });
+
+                        });
+
                     })
                     .catch(error => console.error("Erro ao carregar a página:", error));
             });
