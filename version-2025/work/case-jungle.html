@@ -8,11 +8,12 @@
 </head>
 <body id="page_case__body">
     
-    <div id="case_main">
-        <div class="default_header">
+
+    <div class="default_header">
         <h1 class="title">Jungle</h1>
         <img src="/images/close_button.png" id="close_button" class="button"/>
     </div>
+
     <div class="page_case__content">
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt magnam itaque recusandae delectus repudiandae quam cum? Voluptatum, nesciunt dolores sequi quaerat repudiandae, debitis eum suscipit blanditiis molestiae, deleniti tempora consequuntur?
         Quas earum aut facere ipsum iure corporis, iste cum dolorum laboriosam maxime corrupti at. Praesentium ipsam sapiente in quae maiores vitae alias ut. Provident ipsum blanditiis ducimus cumque. Nam, dignissimos.</p>
@@ -69,10 +70,18 @@
         Veritatis unde non ad nemo maxime nam, repellendus sunt, quam debitis necessitatibus dolore eius eveniet sequi recusandae, labore consectetur beatae reiciendis. Voluptate asperiores natus atque dolore reiciendis autem quod repellat?
         Aspernatur, delectus cumque modi temporibus ipsum accusantium ad deleniti enim, sapiente quidem cupiditate eaque quis laborum neque cum voluptatem porro. Tempore voluptatem aut optio libero a minima ratione consectetur! Porro.</p>
     </div>
-    </div>
-    
+
     <script id="initial_state">
         document.addEventListener("DOMContentLoaded", () => {
+
+            // Cria o elemento page_behind
+            var pageBehind = document.createElement('div');
+            pageBehind.setAttribute('id', 'page_behind');
+            pageBehind.style.position = "fixed";
+            pageBehind.style.zIndex = 0;
+            pageBehind.style.backgroundColor = "white";
+            pageBehind.style.display = "none";
+            document.body.insertBefore(pageBehind, document.body.firstChild);
     
             // Cria o elemento dimmer
             var dimmer = document.createElement('div');
@@ -84,27 +93,36 @@
             dimmer.style.left = 0;
             dimmer.style.zIndex = 1;
             dimmer.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
-            dimmer.style.display = "none";
             dimmer.style.transition = "background-color 1.2s ease";
             dimmer.style.willChange = "background-color";
-            document.body.appendChild(dimmer);
+            dimmer.style.display = "none";
+            document.body.insertBefore(dimmer, document.body.firstChild);
     
-            // Cria o elemento page_behind
-            var pageBehind = document.createElement('div');
-            pageBehind.setAttribute('id', 'page_behind');
-            pageBehind.style.display = "none";
-            pageBehind.style.position = "fixed";
-            pageBehind.style.zIndex = 0;
-            pageBehind.style.backgroundColor = "white";
-            document.body.appendChild(pageBehind);
-    
-            // Aplica os estilos iniciais da div main
-            const main = document.getElementById("case_main");
-            main.style.transition = "transform 0.7s ease";
-            main.style.willChange = "transform";
+            // Carrega todo a página dentro do case_main
+            var caseMain = document.createElement("div");
+            caseMain.setAttribute("id", "case_main");
+            caseMain.style.height = "100vh";
+            caseMain.style.position = "fixed";
+            caseMain.style.zIndex = 20;
+            caseMain.style.overflowX = "hidden";
+            caseMain.style.backgroundColor = "#ffffff";
+            caseMain.style.transition = "transform 0.7s ease";
+            caseMain.style.willChange = "transform";
+            caseMain.style.display = "flex";
+            const fragment = document.createDocumentFragment();
+            Array.from(document.body.children).forEach(child => {
+                if (child.id !== "dimmer" && child.id !== "page_behind" && child.id !== "case_main" && child.tagName != "SCRIPT" ) {
+                    const clonedElement = child.cloneNode(true);
+                    if (clonedElement) {
+                        fragment.appendChild(clonedElement);
+                    }
+                    child.remove();
+                }
+            });
+            caseMain.appendChild(fragment);
+            document.body.insertBefore(caseMain, document.body.firstChild);
         });
     </script>
-    
     
     <script id="close_case">
         // Executar ao carregar a página
@@ -136,15 +154,24 @@
                         const parser = new DOMParser();
                         const doc = parser.parseFromString(htmlString, "text/html");
     
-                        // Remove scripts e elementos não visíveis durante a transição
+                        //Remove scripts e elementos não visíveis durante a transição
                         doc.querySelectorAll("script").forEach((el) => el.remove());
                         doc.body.querySelectorAll("video[autoplay]").forEach((video) => {
                             video.removeAttribute("autoplay");
                             video.pause();
                         });
-    
+
+                        // --- Adiciona links do head da targetPage
+                        Array.from(doc.querySelectorAll('link')).filter(link => link.hasAttribute('rel')).forEach(link => {
+                            const newLink = document.createElement("link"); // Usar document.createElement
+                            Array.from(link.attributes).forEach(attr => {
+                                newLink.setAttribute(attr.name, attr.value);
+                            });
+                            document.head.appendChild(newLink); // Adicionar ao <head> do documento atual
+                        });
+
                         // Injeta o conteúdo manipulado na div page_behind
-                        pageBehind.innerHTML = doc.body.innerHTML;
+                        pageBehind.innerHTML += doc.body.innerHTML;
     
                         // Exibe a div page_behind
                         pageBehind.style.display = "block";
@@ -175,13 +202,12 @@
         });
     
     </script>
-    
+
     <script id="load_videos">
         document.addEventListener("DOMContentLoaded", () => {
             loadLazyVideos();
         });
     </script>
-    
     
     <script id="lazy">
         function loadLazyVideos() {

@@ -14,7 +14,7 @@ body{
 
 .default_header {
     position:fixed;
-    z-index: 0;
+    z-index: 2;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -46,14 +46,14 @@ body{
     font-size: 4rem;
 }
 
-#case_main{
+/* #case_main{
     height: 100vh;
     position: fixed;
     z-index: 20;
     overflow: auto; 
     background-color: #ffffff;
     display: flex;
-}
+} */
 
 .page_case__content {
     z-index: 1;
