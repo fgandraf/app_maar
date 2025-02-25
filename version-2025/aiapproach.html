@@ -5,21 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Approach</title>
     <link rel="stylesheet" href="/styles/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:wdth@75..150&display=swap" rel="stylesheet">
 </head>
-<body>
+<body id="ai_body">
 
 
-    <main>
-        <div class="header">
-            <img src="/images/maarlogo.svg" width="220px">
-            <img src="/images/menu_button.png" id="menu_button" style="cursor: pointer"/>
+
+    <div class="header">
+        <img src="/images/maarlogo_inverted.svg" width="220px">
+        <img src="/images/menu_button_inverted.png" id="menu_button" style="cursor: pointer"/>
+    </div>
+    
+    <div class="main">
+        
+        <div class="cover">
+            <p style="text-align: end; width: 60vw;">Using AI Intentional.</p>
+            <p>Impactful. Consistent. We seamlessly</p>
+            <p>integrate with brand teams to create motion</p>
+            <p>identities that are compelling and deeply</p>
+            <p>rooted in what makes a brand truly distinct.</p>
+            <p style="color: gray">Every move is intentional, approached</p>
+            <p style="color: gray">holistically to ensure the motion doesn’t just</p>
+            <p style="color: gray">scale—it thrives, staying consistent across</p>
+            <p style="color: gray">platforms.</p>
+        </div>
+
+
+
+        <div class="content">
+
+        </div>
+
+        <div class="footer">
+            <div>
+                <p>We collaborate with ambitious</p>
+                <p>brands and people.</p>
+                <p>Let's build.</p>
+            </div>
+        
+
+            <img src="/images/maarlogo_inverted.svg" width="100%">
+
         </div>
         
-        <div class="main">
-            <h1 class="text_cover">AI APPROACH</h1>
-        </div>
-    </main>
+
+    </div>
+
     
+
+
+
     <script id="load_menu">
         document.addEventListener("DOMContentLoaded", () => {
 
@@ -70,7 +105,6 @@
                 fetch("/menu.html")
                     .then(response => response.text())
                     .then(htmlString => {
-
                         // hide scrollbar
                         document.body.style.overflowY = "hidden";
 
@@ -83,6 +117,7 @@
                             dimmer.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
                             menuOverlay.style.transform = "translate3d(0, 0, 0)";
                         });
+
 
                         // Inicializa o menu
                         const scriptsJs = menuOverlay.querySelector("script");

@@ -9,6 +9,7 @@ body{
 }
 
 .header {
+    box-sizing: border-box;
     position: fixed;
     z-index: 2;
     display: flex;
@@ -17,13 +18,12 @@ body{
     width: 100vw;
     height: 18vh;
     padding: 0 3vw;
-    box-sizing: border-box;
 }
 
 .main{
+    box-sizing: border-box;
     width: 100vw;
     height: 100vh;
-    box-sizing: border-box;
     padding: 20vh 2vw;
     z-index: 1;
     text-align: justify;
@@ -102,6 +102,43 @@ body{
 /*********** CASES ***********/
 .title{
     font-size: 4rem;
+}
+
+
+
+
+
+/*********** AI APPROACH ***********/
+#ai_body{
+    background-color: black;
+    color: white;
+
+    .cover{
+        width: 94vw;
+        padding: 10vh 1vw;
+        border-bottom: 1px solid gray;
+        line-height: 1vh;
+        font-size: 4vw; 
+        font-family: 'Roboto Flex', sans-serif;
+        font-stretch: 140%;    
+    }
+
+    .content{
+        height: 200vh;
+        margin: 15vh 0;
+        background-color: rgb(46, 46, 46);
+    }
+
+    .footer{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 10vh 1vw 5vh 1vw;
+        border-top: 1px solid white;
+        height: 100vh;
+        font-size: 3vw;
+        line-height: 1vh;
+    }
 }
 
 

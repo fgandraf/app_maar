@@ -93,10 +93,18 @@
                             parentBody.appendChild(newScript);
                             script.remove();
                         });
+
+                        // --- Acrescenta os atributos do body da targetPage
+                        while (parentBody.attributes.length > 0) 
+                            parentBody.removeAttribute(parentBody.attributes[0].name);
+                        Array.from(doc.body.attributes).forEach(attr => 
+                            parentBody.setAttribute(attr.name, attr.value)
+                        );
+
                         // --- Acrescenta o restante do body da targetPage
                         parentBody.innerHTML += doc.body.innerHTML;
 
-
+                        
                         // --- esconde o menu
                         const menuOverlay = parentPage.ownerDocument.getElementById("menu_overlay");
                         const dimmer = parentPage.ownerDocument.getElementById("dimmer");
