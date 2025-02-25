@@ -30,13 +30,12 @@
             <p style="color: gray">platforms.</p>
         </div>
 
-
-
         <div class="secao-stick">
             
-            <div class="Div Block 9">
+            <div class="container">
 
                 <div class="content-ai-approach-wrapper">
+
                     <div class="content-ai-approach">
                         <div class="content_top">
                             <div>
@@ -66,10 +65,7 @@
                         </div>
                         
                     </div>
-                </div>
 
-
-                <div class="content-ai-approach-wrapper">
                     <div class="content-ai-approach">
                         <div class="content_top">
                             <div>
@@ -99,10 +95,7 @@
                         </div>
                         
                     </div>
-                </div>
 
-
-                <div class="content-ai-approach-wrapper">
                     <div class="content-ai-approach">
                         <div class="content_top">
                             <div>
@@ -132,10 +125,7 @@
                         </div>
                         
                     </div>
-                </div>
 
-
-                <div class="content-ai-approach-wrapper">
                     <div class="content-ai-approach">
                         <div class="content_top">
                             <div>
@@ -164,6 +154,7 @@
                             <img src="/images/ai4.png" width="100%" style="border-radius: 2rem">
                         </div>
                     </div>
+
                 </div>
 
             </div>
@@ -278,15 +269,46 @@
     </script>
 
     <script id="initial_state">
-        // Cria os stickers no carregamento da página
         document.addEventListener("DOMContentLoaded", () => {
-            const adsSection = document.querySelector('.secao-stick');
+
+            // Cria as classes necessárias para os stickers
+            const classes = document.createElement('style');
+            classes.type = 'text/css';
+            classes.innerHTML = `
+                .numero-ai-approach-wrapper{
+                    display: none;
+                    top: 0;
+                    left: 0;
+                    position: fixed;
+                    transition: transform 1s ease;
+                    opacity: 1;
+                }
+                .numero-ai-approach-wrapper.hide { 
+                    transform: translateY(-100vh); 
+                    opacity: 1;
+                }
+                .numero-ai-approach{
+                    position: fixed;
+                    transform: translateY(100vh);
+                    transition: transform 0.4s ease, opacity 0.6s ease-in-out;
+                    opacity: 0;
+                    align-self: start;
+                    left: 3vw;
+                }
+                .numero-ai-approach.visible { 
+                    transform: translateY(0); opacity: 1 
+                }
+            `;
+            document.head.appendChild(classes);
+
+            // Cria a div com os stickers
+            const adsSection = document.querySelector('.container');
             const stickersHTML = `
                 <div class="numero-ai-approach-wrapper">
-                    <div id="sticker1" class="sticker">(1)</div>
-                    <div id="sticker2" class="sticker">(2)</div>
-                    <div id="sticker3" class="sticker">(3)</div>
-                    <div id="sticker4" class="sticker">(4)</div>
+                    <div id="sticker1" class="numero-ai-approach">(1)</div>
+                    <div id="sticker2" class="numero-ai-approach">(2)</div>
+                    <div id="sticker3" class="numero-ai-approach">(3)</div>
+                    <div id="sticker4" class="numero-ai-approach">(4)</div>
                 </div>
             `;
             adsSection.insertAdjacentHTML('afterbegin', stickersHTML);
@@ -296,10 +318,10 @@
     <script id="scroll_stickers">
         document.addEventListener('scroll', function () {
             // Captura os elementos da página
-            const stickers = document.querySelectorAll('.sticker');
-            const wrappers = document.querySelectorAll('.content-ai-approach-wrapper');
+            const stickers = document.querySelectorAll('.numero-ai-approach');
+            const wrappers = document.querySelectorAll('.content-ai-approach');
             const stickersContainer = document.querySelector('.numero-ai-approach-wrapper');
-            const adsSection = document.querySelector('.secao-stick');
+            const adsSection = document.querySelector('.container');
 
             // Mostra o container dos stickers
             stickersContainer.style.display = 'flex';
