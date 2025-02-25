@@ -131,7 +131,6 @@ body {
     color: white;
 }
 
-
 .cover {
     width: 94vw;
     padding: 10vh 1vw;
@@ -141,16 +140,15 @@ body {
     font-family: 'Sans-Titre';
 }
 
-.ads_section {
+.secao-stick {
     margin: 15vh 0;
     display: flex;
     flex-direction: column;
     padding: 3rem 3rem 0 23.5vw;
     border-bottom: 1px solid white;
-    
 }
 
-.stickers_container {
+.numero-ai-approach-wrapper {
     position: fixed;
     top: 0;
     left: 0;
@@ -161,12 +159,12 @@ body {
     opacity: 1;
 }
 
-.stickers_container.hide {
+.numero-ai-approach-wrapper.hide {
     transform: translateY(-100vh);
     display: none;
 }
 
-.card {
+.content-ai-approach-wrapper {
     display: flex;
     margin-bottom: 15rem;
     padding-top: 10vh;
@@ -180,43 +178,38 @@ body {
     line-height: 3rem;
     position: fixed;
     align-self: start;
-    left: 3vw; /* Posição horizontal */
-    transform: translateY(100vh); /* Inicia os stickers fora da tela (abaixo) */
-    transition: transform 0.4s ease, opacity 0.6s ease-in-out; /* Transição suave */
-    opacity: 0; /* Inicia invisível */
+    left: 3vw;
+    transform: translateY(100vh);
+    transition: transform 0.4s ease, opacity 0.6s ease-in-out;
+    opacity: 0;
     z-index: 500;
 }
 
 .sticker.visible {
-    transform: translateY(0); /* Move o sticker para a posição fixa */
-    opacity: 1; /* Torna o sticker visível */
+    transform: translateY(0);
+    opacity: 1;
 }
 
-.content {
+.content-ai-approach {
     display: flex;
     flex-direction: column;
 }
 
-.content_text {
+.content_top {
     display: grid;
     grid-template-columns: 1.04fr 1fr;
     padding-bottom: 15vh;
 }
 
-.title {
-    display: flex;
-    flex-direction: column;
+.img-ai-approach-wrapper {
     font-size: 2.5vw;
+    margin: 0;
 }
 
-.description {
-    display: flex;
-    flex-direction: column;
+.content-02 {
     font-size: 1.25vw;
     text-align: left;
 }
-
-
 
 .footer {
     display: flex;
