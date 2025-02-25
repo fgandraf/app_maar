@@ -112,65 +112,89 @@ body {
 #ai_body {
     background-color: black;
     color: white;
+}
 
-    .cover {
-        width: 94vw;
-        padding: 10vh 1vw;
-        border-bottom: 1px solid gray;
-        line-height: 1vh;
-        font-size: 4vw;
-        font-family: 'Roboto Flex', sans-serif;
-        font-stretch: 140%;
-    }
+.cover {
+    width: 94vw;
+    padding: 10vh 1vw;
+    border-bottom: 1px solid gray;
+    line-height: 1vh;
+    font-size: 4vw;
+    font-family: 'Roboto Flex', sans-serif;
+    font-stretch: 140%;
+}
 
-    .ads_section {
-        margin: 15vh 0;
-        display: flex;
-        flex-direction: column;
-    }
+.ads_section {
+    margin: 15vh 0;
+    display: flex;
+    flex-direction: column;
+    padding: 3rem 3rem 0 20vw;
+}
 
-    .card {
-        display: grid;
-        grid-template-columns: 15vw 70vw;
-        padding: 10vh 2vw;
-        gap: 2vw;
-    }
+.stickers_container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    z-index: 500;
+    transition: transform 1s ease;
+    opacity: 1;
+}
 
-    .sticker {
-        font-size: 3rem;
-        line-height: 3rem;
-        position: sticky;
-        top: 20vh;
-        align-self: start;
-        transition: top 0.3s ease;
-    }
+.stickers_container.hide {
+    transform: translateY(-100vh);
+}
 
-    .content {
-        display: flex;
-        flex-direction: column;
-    }
+.card {
+    display: flex;
+    margin-bottom: 10vh;
+    padding-top: 10vh;
+    gap: 2vw;
+}
 
-    .content_text {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        padding-bottom: 15vh;
-    }
+.sticker {
+    font-size: 3rem;
+    line-height: 3rem;
+    position: fixed;
+    align-self: start;
+    left: 3vw; /* Posição horizontal */
+    transform: translateY(100vh); /* Inicia os stickers fora da tela (abaixo) */
+    transition: transform 0.4s ease, opacity 0.6s ease-in-out; /* Transição suave */
+    opacity: 0; /* Inicia invisível */
+    z-index: 500;
+}
 
-    .title {
-        display: flex;
-        flex-direction: column;
-        font-size: 3rem;
+.sticker.visible {
+    transform: translateY(0); /* Move o sticker para a posição fixa */
+    opacity: 1; /* Torna o sticker visível */
+}
 
-    }
+.content {
+    display: flex;
+    flex-direction: column;
+}
 
-    .description {
-        display: flex;
-        flex-direction: column;
-        font-size: 1.5rem;
-        text-align: left;
-    }
+.content_text {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-bottom: 15vh;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    font-size: 3rem;
 
 }
+
+.description {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.5rem;
+    text-align: left;
+}
+
 
 
 .footer {

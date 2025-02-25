@@ -36,8 +36,21 @@
 
         <div class="ads_section">
 
+
+
+            <div class="stickers_container">
+                <div id="sticker1" class="sticker">(1)</div>
+                <div id="sticker2" class="sticker">(2)</div>
+                <div id="sticker3" class="sticker">(3)</div>
+                <div id="sticker4" class="sticker">(4)</div>
+            </div>
+
+
+
+
+
+
             <div id="card1" class="card">
-                <div id="sticker1" class="sticker">(1)</div> 
                 <div id="content1" class="content">
                     <div class="content_text">
                         <div class="title">
@@ -64,7 +77,6 @@
 
 
             <div id="card2" class="card">
-                <div id="sticker2" class="sticker">(2)</div> 
                 <div id="content2" class="content">
                     <div class="content_text">
                         <div class="title">
@@ -91,7 +103,6 @@
 
 
             <div id="card3" class="card">
-                <div id="sticker3" class="sticker">(3)</div> 
                 <div id="content3" class="content">
                     <div class="content_text">
                         <div class="title">
@@ -118,7 +129,6 @@
 
 
             <div id="card4" class="card">
-                <div id="sticker4" class="sticker">(4)</div> 
                 <div id="content4" class="content">
                     <div class="content_text">
                         <div class="title">
@@ -262,32 +272,44 @@
         });
     </script>
 
-    <!-- <script>
-        document.addEventListener('scroll', function () {
+    <script>
+       document.addEventListener('scroll', function () {
             const stickers = document.querySelectorAll('.sticker');
             const cards = document.querySelectorAll('.card');
+            const stickersContainer = document.querySelector('.stickers_container');
+            const adsSection = document.querySelector('.ads_section');
 
             // Defina as posições fixas para cada sticker (em vh)
-            const fixedPositions = [20, 25, 30, 35];
+            const fixedPositions = [25, 31, 37, 43];
 
+            // Verifique se a rolagem atingiu o final da .ads_section
+            const adsSectionRect = adsSection.getBoundingClientRect();
+            const isEndOfSection = adsSectionRect.bottom <= window.innerHeight - 400;
+
+            if (isEndOfSection) {
+                // Aplica a classe para mover o contêiner de stickers para fora da tela
+                stickersContainer.classList.add('hide');
+            } else {
+                // Remove a classe para trazer o contêiner de stickers de volta
+                stickersContainer.classList.remove('hide');
+            }
+
+            // Controle a visibilidade dos stickers
             stickers.forEach((sticker, index) => {
                 const card = cards[index];
                 const cardRect = card.getBoundingClientRect();
-                const stickerHeight = sticker.offsetHeight;
-
-                // Calcule a posição fixa em pixels
                 const fixedPosition = (fixedPositions[index] / 100) * window.innerHeight;
 
                 // Verifique se o card está na área visível
                 if (cardRect.top <= fixedPosition) {
-                    sticker.style.top = `${fixedPosition}px`;
+                    sticker.classList.add('visible'); // Adiciona a classe para mostrar o sticker
+                    sticker.style.top = `${fixedPosition}px`; // Define a posição fixa
                 } else {
-                    // Retorne o sticker à sua posição original
-                    sticker.style.top = '0';
+                    sticker.classList.remove('visible'); // Remove a classe para esconder o sticker
                 }
             });
         });
-    </script> -->
+    </script>
 
 </body>
 
