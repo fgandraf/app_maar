@@ -127,7 +127,6 @@ body {
 /*********** AI APPROACH ***********/
 #ai_body {
     background-color: black;
-    font-family: 'LinikSans', sans-serif;
     color: white;
 }
 
@@ -146,6 +145,7 @@ body {
     flex-direction: column;
     padding: 3rem 3rem 0 23.5vw;
     border-bottom: 1px solid white;
+    font-family: 'LinikSans', sans-serif;
 }
 
 .numero-ai-approach-wrapper {
@@ -154,7 +154,7 @@ body {
     left: 0;
     display: none;
     flex-direction: column;
-    z-index: 500;
+    z-index: 1;
     transition: transform 1s ease;
     opacity: 1;
 }
