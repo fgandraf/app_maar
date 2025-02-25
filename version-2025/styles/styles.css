@@ -1,5 +1,21 @@
 /*********** GLOBAL ***********/
 
+
+@font-face {
+    font-family: 'LinikSans';
+    src: url('/images/fonts/LinikSans-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('/images/fonts/Inter.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Sans-Titre';
+    src: url('/images/fonts/Sans-Titre-Pro.ttf') format('truetype');
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -11,7 +27,7 @@ body {
 .header {
     box-sizing: border-box;
     position: fixed;
-    z-index: 2;
+    z-index: 1;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -111,31 +127,34 @@ body {
 /*********** AI APPROACH ***********/
 #ai_body {
     background-color: black;
+    font-family: 'LinikSans', sans-serif;
     color: white;
 }
+
 
 .cover {
     width: 94vw;
     padding: 10vh 1vw;
     border-bottom: 1px solid gray;
     line-height: 1vh;
-    font-size: 4vw;
-    font-family: 'Roboto Flex', sans-serif;
-    font-stretch: 140%;
+    font-size: 4.1vw;
+    font-family: 'Sans-Titre';
 }
 
 .ads_section {
     margin: 15vh 0;
     display: flex;
     flex-direction: column;
-    padding: 3rem 3rem 0 20vw;
+    padding: 3rem 3rem 0 23.5vw;
+    border-bottom: 1px solid white;
+    
 }
 
 .stickers_container {
     position: fixed;
     top: 0;
     left: 0;
-    display: flex;
+    display: none;
     flex-direction: column;
     z-index: 500;
     transition: transform 1s ease;
@@ -144,17 +163,20 @@ body {
 
 .stickers_container.hide {
     transform: translateY(-100vh);
+    display: none;
 }
 
 .card {
     display: flex;
-    margin-bottom: 10vh;
+    margin-bottom: 15rem;
     padding-top: 10vh;
     gap: 2vw;
 }
 
 .sticker {
-    font-size: 3rem;
+    font-family: 'Arial Narrow', sans-serif;
+    font-weight: 500;
+    font-size: 1.8vw;
     line-height: 3rem;
     position: fixed;
     align-self: start;
@@ -177,21 +199,20 @@ body {
 
 .content_text {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.04fr 1fr;
     padding-bottom: 15vh;
 }
 
 .title {
     display: flex;
     flex-direction: column;
-    font-size: 3rem;
-
+    font-size: 2.5vw;
 }
 
 .description {
     display: flex;
     flex-direction: column;
-    font-size: 1.5rem;
+    font-size: 1.25vw;
     text-align: left;
 }
 
@@ -199,13 +220,18 @@ body {
 
 .footer {
     display: flex;
+    position: relative;
+    bottom: 0;
+    left: 0;
     flex-direction: column;
     justify-content: space-between;
     padding: 10vh 1vw 5vh 1vw;
-    border-top: 1px solid white;
+    background-color: black;
     height: 100vh;
+    box-sizing: border-box;
     font-size: 3vw;
     line-height: 1vh;
+    z-index: 50;
 }
 
 

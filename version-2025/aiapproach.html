@@ -6,12 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Approach</title>
     <link rel="stylesheet" href="/styles/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:wdth@75..150&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:wdth@75..350&display=swap" rel="stylesheet">
 </head>
 
 <body id="ai_body">
-
-
 
     <div class="header">
         <img src="/images/maarlogo_inverted.svg" width="220px">
@@ -37,19 +35,6 @@
         <div class="ads_section">
 
 
-
-            <div class="stickers_container">
-                <div id="sticker1" class="sticker">(1)</div>
-                <div id="sticker2" class="sticker">(2)</div>
-                <div id="sticker3" class="sticker">(3)</div>
-                <div id="sticker4" class="sticker">(4)</div>
-            </div>
-
-
-
-
-
-
             <div id="card1" class="card">
                 <div id="content1" class="content">
                     <div class="content_text">
@@ -71,7 +56,7 @@
                             </span>
                         </div>
                     </div>
-                    <img src="/images/ai1.png" width="100%" style="border-radius: 2rem">
+                    <img src="/images/ai1.png" width="75%" style="border-radius: 2rem">
                 </div>
             </div>
 
@@ -173,6 +158,23 @@
     </div>
 
 
+    <script id="initial_state">
+        document.addEventListener("DOMContentLoaded", () => {
+            const adsSection = document.querySelector('.ads_section');
+
+            const stickersHTML = `
+                <div class="stickers_container">
+                    <div id="sticker1" class="sticker">(1)</div>
+                    <div id="sticker2" class="sticker">(2)</div>
+                    <div id="sticker3" class="sticker">(3)</div>
+                    <div id="sticker4" class="sticker">(4)</div>
+                </div>
+            `;
+
+            adsSection.insertAdjacentHTML('afterbegin', stickersHTML);
+        });
+
+    </script>
 
 
 
@@ -274,10 +276,12 @@
 
     <script>
        document.addEventListener('scroll', function () {
+        
             const stickers = document.querySelectorAll('.sticker');
             const cards = document.querySelectorAll('.card');
             const stickersContainer = document.querySelector('.stickers_container');
             const adsSection = document.querySelector('.ads_section');
+            stickersContainer.style.display = 'flex';
 
             // Defina as posições fixas para cada sticker (em vh)
             const fixedPositions = [25, 31, 37, 43];
