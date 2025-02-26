@@ -1,12 +1,12 @@
 /*********** GLOBAL ***********/
 @font-face {
     font-family: 'LinikSans';
-    src: url('/images/fonts/LinikSans-Regular.ttf') format('truetype');
+    src: url('/assets/fonts/LinikSans-Regular.ttf') format('truetype');
 }
 
 @font-face {
     font-family: 'Sans-Titre';
-    src: url('/images/fonts/Sans-Titre-Pro.ttf') format('truetype');
+    src: url('/assets/fonts/Sans-Titre-Pro.ttf') format('truetype');
 }
 
 body {
@@ -27,7 +27,35 @@ body {
     width: 100vw;
     height: 18vh;
     padding: 0 3vw;
+
+    .title {
+        font-size: 4rem;
+    }
+
+    .maar_logo{
+        width: 220px;
+        height: 60px;
+        background-image: url("/assets/images/maarlogo.svg");
+        background-repeat: no-repeat;
+        background-size: 220px;
+        background-position: center;
+    }
+
+    .rounded_clickable {
+        width: 80px;
+        height: 80px;
+        cursor: pointer;
+        background-repeat: no-repeat;
+        background-size: 80px;
+        background-position: center;
+    }
+
+    .menu_icon{ background-image: url("/assets/images/icon_menu.png") }
+    .close_icon{ background-image: url("/assets/images/icon_close.png") }
+
+    .inverted{ filter: invert(1) }
 }
+
 
 .main {
     box-sizing: border-box;
@@ -44,7 +72,7 @@ body {
 
 /*********** HOME ***********/
 #index_main {
-    background-image: url(/images/home_background.png);
+    background-image: url("/assets/images/home_background.png");
     background-size: cover;
 }
 
@@ -93,7 +121,7 @@ body {
     .card_link {
         display: flex;
         height: calc(50vh - 40px);
-        background-image: url(/images/case-claro.png);
+        background-image: url("/assets/images/case-claro.png");
         background-size: cover;
         border-radius: 1rem;
         cursor: pointer;
@@ -105,13 +133,6 @@ body {
 }
 
 
-
-
-
-/*********** CASES ***********/
-.title {
-    font-size: 4rem;
-}
 
 
 
@@ -170,6 +191,7 @@ body {
     font-size: 2.5vw;
     margin: 0;
 }
+
 
 .content-02 {
     font-size: 1.25vw;
