@@ -52,10 +52,10 @@ body {
 
     .menu_icon{ background-image: url("/assets/images/icon_menu.png") }
     .close_icon{ background-image: url("/assets/images/icon_close.png") }
-
-    .inverted{ filter: invert(1) }
+    
 }
 
+.inverted{ filter: invert(1) }
 
 .main {
     box-sizing: border-box;
