@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Approach</title>
     <link rel="stylesheet" href="/assets/styles/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:wdth@75..350&display=swap" rel="stylesheet">
 </head>
 
 <body id="ai_body">
@@ -16,7 +15,7 @@
         <div class="rounded_clickable menu_icon inverted" id="menu_button"></div>
     </div>
 
-    <div class="main">
+    <div class="main" style="overflow: unset; position:unset;">
 
         <div class="cover">
             <p style="text-align: end; width: 60vw;">Using AI Intentional.</p>
@@ -30,11 +29,12 @@
             <p style="color: gray">platforms.</p>
         </div>
 
-        <div class="secao-stick">
+        <div class="section-approach">
             
-            <div class="approach_container">
+            <div class="approach-container">
 
-                <div class="content-ai-approach-wrapper">
+
+                <div class="approach-content-wrapper">
 
                     <div class="content-ai-approach">
                         <div class="content_top">
@@ -172,6 +172,7 @@
 
     </div>
 
+
     <script id="load_menu">
         document.addEventListener("DOMContentLoaded", () => {
 
@@ -181,7 +182,7 @@
                 var menuOverlay = document.createElement('div');
                 menuOverlay.setAttribute('id', 'menu_overlay');
                 menuOverlay.style.position = "fixed";
-                menuOverlay.style.zIndex = 5;
+                menuOverlay.style.zIndex = 50;
                 menuOverlay.style.display = "none";
                 menuOverlay.style.top = 0;
                 menuOverlay.style.left = 0;
@@ -190,7 +191,7 @@
                 menuOverlay.style.willChange = "transform";
                 document.body.appendChild(menuOverlay);
             }
-            else {
+            else{
                 var menuOverlay = document.getElementById("menu_overlay");
             }
 
@@ -204,26 +205,24 @@
                 dimmer.style.position = "fixed";
                 dimmer.style.top = 0;
                 dimmer.style.left = 0;
-                dimmer.style.zIndex = 4;
+                dimmer.style.zIndex = 40;
                 dimmer.style.backgroundColor = "rgba(0, 0, 0, 0)";
                 dimmer.style.display = "none";
                 dimmer.style.transition = "background-color 0.5s ease-in-out";
                 dimmer.style.willChange = "background-color";
                 document.body.appendChild(dimmer);
             }
-            else {
+            else{
                 var dimmer = document.getElementById("dimmer");
             }
 
             const menuButton = document.getElementById("menu_button");
-
+            
             menuButton.addEventListener("click", (event) => {
                 event.preventDefault();
                 fetch("/menu.html")
                     .then(response => response.text())
                     .then(htmlString => {
-                        // hide scrollbar
-                        document.body.style.overflowY = "hidden";
 
                         menuOverlay.innerHTML = htmlString;
                         menuOverlay.style.display = "block";
@@ -235,13 +234,14 @@
                             menuOverlay.style.transform = "translate3d(0, 0, 0)";
                         });
 
-
                         // Inicializa o menu
                         const scriptsJs = menuOverlay.querySelector("script");
                         if (scriptsJs) {
                             const scriptContent = scriptsJs.textContent;
                             eval(scriptContent);
-                            menuItems(document.querySelector("html"));
+
+                            const parentPage = document.querySelector("html").ownerDocument;
+                            loadMenu(parentPage);
 
                         } else {
                             console.error("Função 'menuItems' não encontrada!");
@@ -249,17 +249,14 @@
 
                         const closeButton = menuOverlay.querySelector("#close_menu_button");
                         closeButton.addEventListener("click", (event) => {
-
                             requestAnimationFrame(() => {
-                                dimmer.style.backgroundColor = "rgba(0, 0, 0, 0)";
-                                menuOverlay.style.transform = "translate3d(0, -100vh, 0)";
+                            dimmer.style.backgroundColor = "rgba(0, 0, 0, 0)";
+                            menuOverlay.style.transform = "translate3d(0, -100vh, 0)";
                                 setTimeout(() => {
-                                    document.body.style.overflowY = "auto";
                                     menuOverlay.style.display = "none";
                                     dimmer.style.display = "none";
                                 }, 500);
                             });
-
                         });
 
                     })
@@ -275,7 +272,7 @@
             const classes = document.createElement('style');
             classes.type = 'text/css';
             classes.innerHTML = `
-                .numero-ai-approach-wrapper{
+                .numero_wrapper{
                     display: none;
                     top: 0;
                     left: 0;
@@ -283,62 +280,69 @@
                     transition: transform 1s ease;
                     opacity: 1;
                 }
-                .numero-ai-approach-wrapper.hide { 
+                .numero_wrapper.hide { 
                     transform: translateY(-100vh); 
                     opacity: 1;
                 }
-                .numero-ai-approach{
+                .numero_approach{
                     position: fixed;
                     transform: translateY(100vh);
                     transition: transform 0.4s ease, opacity 0.6s ease-in-out;
                     opacity: 0;
                     align-self: start;
+                    font-size: 1.8vw;
+                    font-weight: 500;
                     left: 3vw;
                 }
-                .numero-ai-approach.visible { 
+                .numero_approach.visible { 
                     transform: translateY(0); opacity: 1 
                 }
             `;
             document.head.appendChild(classes);
 
             // Cria a div com os stickers
-            const adsSection = document.querySelector('.approach_container');
+            const adsSection = document.querySelector('.approach-container');
             const stickersHTML = `
-                <div class="numero-ai-approach-wrapper">
-                    <div id="sticker1" class="numero-ai-approach">(1)</div>
-                    <div id="sticker2" class="numero-ai-approach">(2)</div>
-                    <div id="sticker3" class="numero-ai-approach">(3)</div>
-                    <div id="sticker4" class="numero-ai-approach">(4)</div>
+                <div class="numero_wrapper">
+                    <div class="numero_approach">(1)</div>
+                    <div class="numero_approach">(2)</div>
+                    <div class="numero_approach">(3)</div>
+                    <div class="numero_approach">(4)</div>
                 </div>
             `;
             adsSection.insertAdjacentHTML('afterbegin', stickersHTML);
         });
     </script>
 
+
+    
+
+   
+
     <script id="scroll_stickers">
         document.addEventListener('scroll', function () {
             // Captura os elementos da página
-            const stickers = document.querySelectorAll('.numero-ai-approach');
+            const container = document.querySelector('.approach-container');
+            const numeroWrapper = document.querySelector('.numero_wrapper');
+            const numeros = document.querySelectorAll('.numero_approach');
             const wrappers = document.querySelectorAll('.content-ai-approach');
-            const stickersContainer = document.querySelector('.numero-ai-approach-wrapper');
-            const adsSection = document.querySelector('.approach_container');
 
             // Mostra o container dos stickers
-            stickersContainer.style.display = 'flex';
+            numeroWrapper.style.display = 'flex';
 
             // Defina as posições fixas para cada sticker (em vh)
             const fixedPositions = [25, 30, 35, 40];
 
             // Verifique se a rolagem atingiu o final da .ads_section
-            const adsSectionRect = adsSection.getBoundingClientRect();
+            const adsSectionRect = container.getBoundingClientRect();
             const isEndOfSection = adsSectionRect.bottom <= window.innerHeight - 350;
             if (isEndOfSection)
-                stickersContainer.classList.add('hide');
+                numeroWrapper.classList.add('hide');
             else
-                stickersContainer.classList.remove('hide');
+                numeroWrapper.classList.remove('hide');
         
             // Controla a visibilidade dos stickers
-            stickers.forEach((sticker, index) => {
+            numeros.forEach((sticker, index) => {
                 const wrap = wrappers[index];
                 const wrapRect = wrap.getBoundingClientRect();
                 const fixedPosition = (fixedPositions[index] / 100) * window.innerHeight;

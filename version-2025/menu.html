@@ -11,7 +11,7 @@
 <body>
     
 
-    <div id="menu_main" class="main">
+    <div id="menu_main" class="main" style="width: 100vw;">
 
 
         <div class="header">
@@ -41,113 +41,156 @@
     </div>
 
 
-    <script id="menu_items">
-        function menuItems(parentPage) {
-            const links = document.querySelectorAll(".menu_item");
+<script id="menu_items">
+    function replaceHead(parentHead, targetHead) {
+        // --- Remove os <style> do parentHead
+        Array.from(parentHead.querySelectorAll("style")).forEach(style => {
+            style.remove(); 
+        });
+        // --- Remove os <meta> do head da parentPage
+        Array.from(parentHead.querySelectorAll("meta")).forEach(meta => {
+            meta.remove();
+        });
+        // --- Remove os <script> do head da parentPage
+        Array.from(parentHead.querySelectorAll("script")).forEach(script => {
+            script.remove();
+        });
+        // --- Adiciona os <meta> do head da targetPage caso não existam
+        targetHead.querySelectorAll("meta").forEach(meta => {
+            parentHead.appendChild(meta.cloneNode(true));
+        });
+        // --- Remove os <link> do head da parentPage que não existam na targetPage
+        Array.from(parentHead.querySelectorAll("link")).forEach(link => {
+            const href = link.getAttribute("href");
+            if (!targetHead.querySelector(`link[href="${href}"]`)) {
+                link.remove();
+            }
+        });
+        // --- Adiciona os <link> do head da targetPage caso não existam
+        targetHead.querySelectorAll("link").forEach(link => {
+            const href = link.getAttribute("href");
+            if (!parentHead.querySelector(`link[href="${href}"]`)) {
+                parentHead.appendChild(link.cloneNode(true));
+            }
+        });
+        // --- Adiciona os <script> src do head da targetPage
+       targetHead.querySelectorAll("script").forEach(script => {
+            parentHead.appendChild(script.cloneNode(true));
+        });
+    }
 
-            links.forEach(link => {
-                link.addEventListener("click", async (event) => {
-                    const targetPage = link.getAttribute("link");
-    
-                    try {
-                        const response = await fetch(targetPage);
-                        const htmlString = await response.text();
-                        const parser = new DOMParser();
-                        const doc = parser.parseFromString(htmlString, "text/html");
-
-                        // Captura a URL atual antes da navegação
-                        const parentUrl = window.location.href;
-
-                        // --- Obtém o head da parentPage
-                        const parentHead = parentPage.querySelector("head");
-                        // --- Limpa o head da parentPage
-                        parentHead.innerHTML = "";
-                        // --- Adiciona scripts do head da targetPage
-                            doc.head.querySelectorAll("script").forEach(script => {
-                            const newScript = document.createElement('script');
-                            Array.from(script.attributes).forEach(attr => {
-                                newScript.setAttribute(attr.name, attr.value);
-                            });
-                            newScript.textContent = script.textContent;
-                            parentHead.appendChild(newScript);
-                            script.remove();
-                        });
-                        // --- Adiciona o restante do head da targetPage
-                        parentHead.innerHTML += doc.head.innerHTML;
-
-
-                        // --- Obtém o body da parentPage
-                        const parentBody = parentPage.querySelector("body");
-                        // --- Limpa o body da parentPage sem excluir o elemento menu_overlay
-                        Array.from(parentBody.children).forEach(child => {
-                            if (child.id != 'menu_overlay' && child.id != 'dimmer') {
-                                parentBody.removeChild(child);
-                            }
-                        });
-                        // --- Adiciona scripts do body da targetPage
-                         doc.body.querySelectorAll("script").forEach(script => {
-                            const newScript = document.createElement('script');
-                            Array.from(script.attributes).forEach(attr => {
-                                newScript.setAttribute(attr.name, attr.value);
-                            });
-                            newScript.textContent = script.textContent;
-                            parentBody.appendChild(newScript);
-                            script.remove();
-                        });
-
-                        // --- Acrescenta os atributos do body da targetPage
-                        while (parentBody.attributes.length > 0) 
-                            parentBody.removeAttribute(parentBody.attributes[0].name);
-                        Array.from(doc.body.attributes).forEach(attr => 
-                            parentBody.setAttribute(attr.name, attr.value)
-                        );
-
-                        // --- Acrescenta o restante do body da targetPage
-                        parentBody.innerHTML += doc.body.innerHTML;
-
-                        
-                        // --- esconde o menu
-                        const menuOverlay = parentPage.ownerDocument.getElementById("menu_overlay");
-                        const dimmer = parentPage.ownerDocument.getElementById("dimmer");
-                        menuOverlay.offsetHeight;
-                        requestAnimationFrame(() => {
-                            menuOverlay.style.transform = "translate3d(0, -100vh, 0)";
-                            dimmer.style.backgroundColor = "rgba(0, 0, 0, 0)";
-                            setTimeout(() => {
-                                menuOverlay.style.display = "none";
-                                dimmer.style.display = "none";
-                            }, 500);
-                        });
-                        
-
-                        // --- dispara os scripts
-                        const event = new Event('DOMContentLoaded', {
-                            bubbles: true,
-                            cancelable: true
-                        });
-                        document.dispatchEvent(event);
-
-                        // --- Salva a página atual no histórico antes da navegação
-                        history.replaceState({ parentUrl }, '', parentUrl);
-
-                        // --- atualiza o histórico
-                        history.pushState({}, '', targetPage);
-                        
-                        // --- Intercepta o evento 'popstate' para capturar o botão voltar
-                        window.addEventListener('popstate', (event) => {
-                            if (event.state && event.state.parentUrl) {
-                                window.location.href = event.state.parentUrl; // Redireciona para a página original
-                            }
-                        });
-
-
-                    } catch (error) {
-                        console.error('Erro ao carregar a página:', error);
-                    }
-                });
+    function replaceBody(parentBody, targetBody){
+        // --- Limpa o body da parentPage sem excluir o elemento menu_overlay e o elemento dimmer
+        Array.from(parentBody.children).forEach(child => {
+            if (child.id != 'menu_overlay' && child.id != 'dimmer') {
+                parentBody.removeChild(child);
+            }
+        });
+        // --- Acrescenta os atributos do body da targetPage
+        while (parentBody.attributes.length > 0) 
+            parentBody.removeAttribute(parentBody.attributes[0].name);
+        Array.from(targetBody.attributes).forEach(attr => 
+            parentBody.setAttribute(attr.name, attr.value)
+        );
+        // --- Adiciona scripts do body da targetPage
+        targetBody.querySelectorAll("script").forEach(script => {
+            const newScript = document.createElement('script');
+            Array.from(script.attributes).forEach(attr => {
+                newScript.setAttribute(attr.name, attr.value);
             });
-        }
-    </script>
+            newScript.textContent = script.textContent;
+            parentBody.appendChild(newScript);
+            script.remove();
+        });
+        
+        // --- Acrescenta o restante do body da targetPage no início do parentBody
+        Array.from(targetBody.childNodes).forEach(childNode => {
+            parentBody.insertBefore(childNode, parentBody.firstChild);
+        });
+    }
+
+    function elementLoaded(element) {
+        return new Promise((resolve) => {
+            const observer = new MutationObserver((mutationsList, observer) => {
+                resolve(); // Resolve a Promise quando o DOM é atualizado
+                observer.disconnect(); // Para de observar após a primeira mudança
+            });
+            // Observa mudanças no elemento
+            observer.observe(element, {
+                childList: true, // Observa adição/remoção de elementos filhos
+                subtree: true,   // Observa toda a subárvore do elemento
+            });
+            // Força a detecção de mudanças (caso o innerHTML já tenha sido processado)
+            setTimeout(resolve, 0);
+        });
+    }
+
+    function hideMenu(parentPage){
+        const menuOverlay = parentPage.getElementById("menu_overlay");
+        const dimmer = parentPage.getElementById("dimmer");
+        menuOverlay.offsetHeight;
+        requestAnimationFrame(() => {
+            menuOverlay.style.transform = "translate3d(0, -100vh, 0)";
+            dimmer.style.backgroundColor = "rgba(0, 0, 0, 0)";
+            setTimeout(() => {
+                menuOverlay.style.display = "none";
+                dimmer.style.display = "none";
+            }, 500);
+        });
+    }
+
+    function runScripts(){
+        const event = new Event('DOMContentLoaded', {
+            bubbles: true,
+            cancelable: true
+        });
+        document.dispatchEvent(event);
+    }
+
+    function updateBrowserHistory(targetPage){
+        // Captura a URL atual antes da navegação
+        const parentUrl = window.location.href;
+        // --- Salva a página atual no histórico antes da navegação
+        history.replaceState({ parentUrl }, '', parentUrl);
+        // --- atualiza o histórico
+        history.pushState({}, '', targetPage);
+        // --- Intercepta o evento 'popstate' para capturar o botão voltar
+        window.addEventListener('popstate', (event) => {
+            if (event.state && event.state.parentUrl) {
+                window.location.href = event.state.parentUrl; // Redireciona para a página original
+            }
+        });
+    }
+
+    function loadMenu(parentPage) {
+        const links = document.querySelectorAll(".menu_item");
+
+        links.forEach(link => {
+            link.addEventListener("click", async (event) => {
+                const targetURL = link.getAttribute("link");
+
+                try {
+                    const response = await fetch(targetURL);
+                    const htmlString = await response.text();
+
+                    const targetPage = new DOMParser().parseFromString(htmlString, "text/html");
+
+                    replaceHead(parentPage.head, targetPage.head);
+                    replaceBody(parentPage.body, targetPage.body);
+
+                    await elementLoaded(parentPage.body);
+                    
+                    hideMenu(parentPage);
+                    runScripts();
+                    updateBrowserHistory(targetURL);
+
+                } catch (error) {
+                    console.error('Erro ao carregar a página:', error);
+                }
+            });
+        });
+    }
+</script>
 
     
 </body>

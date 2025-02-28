@@ -53,7 +53,7 @@
                 var menuOverlay = document.createElement('div');
                 menuOverlay.setAttribute('id', 'menu_overlay');
                 menuOverlay.style.position = "fixed";
-                menuOverlay.style.zIndex = 5;
+                menuOverlay.style.zIndex = 50;
                 menuOverlay.style.display = "none";
                 menuOverlay.style.top = 0;
                 menuOverlay.style.left = 0;
@@ -76,7 +76,7 @@
                 dimmer.style.position = "fixed";
                 dimmer.style.top = 0;
                 dimmer.style.left = 0;
-                dimmer.style.zIndex = 4;
+                dimmer.style.zIndex = 40;
                 dimmer.style.backgroundColor = "rgba(0, 0, 0, 0)";
                 dimmer.style.display = "none";
                 dimmer.style.transition = "background-color 0.5s ease-in-out";
@@ -95,9 +95,6 @@
                     .then(response => response.text())
                     .then(htmlString => {
 
-                        // hide scrollbar
-                        document.body.style.overflowY = "hidden";
-
                         menuOverlay.innerHTML = htmlString;
                         menuOverlay.style.display = "block";
                         dimmer.style.display = "block";
@@ -113,7 +110,9 @@
                         if (scriptsJs) {
                             const scriptContent = scriptsJs.textContent;
                             eval(scriptContent);
-                            menuItems(document.querySelector("html"));
+
+                            const parentPage = document.querySelector("html").ownerDocument;
+                            loadMenu(parentPage);
 
                         } else {
                             console.error("Função 'menuItems' não encontrada!");
@@ -121,17 +120,14 @@
 
                         const closeButton = menuOverlay.querySelector("#close_menu_button");
                         closeButton.addEventListener("click", (event) => {
-
                             requestAnimationFrame(() => {
                             dimmer.style.backgroundColor = "rgba(0, 0, 0, 0)";
                             menuOverlay.style.transform = "translate3d(0, -100vh, 0)";
                                 setTimeout(() => {
-                                    document.body.style.overflowY = "auto";
                                     menuOverlay.style.display = "none";
                                     dimmer.style.display = "none";
                                 }, 500);
                             });
-
                         });
 
                     })
